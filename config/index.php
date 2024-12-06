@@ -1,6 +1,5 @@
 <?php
 require_once 'controller_1.php';
-require_once 'upload.php';
 require_once 'functtions.php';
 
 if(!isset($_SESSION['id'])) {
@@ -42,10 +41,10 @@ if(!isset($_SESSION['id'])) {
         </div>
 
         <div>
-            <form action="">
-               <input type="search" name="search" id="" class="index_search" placeholder="Search">
-               <button style="background:transparent; border:none; margin: 17px 0px 0px -30px; ">
-               <img src="img/search2.png" alt="search icon"  style="width:20px; " >
+            <form method="get" action="search.php">
+               <input type="search" name="search_data" id="" class="index_search" placeholder="Search" require>
+               <button name="search_btn">search
+               <!--<img src="img/search2.png" alt="search icon"  style="width:20px; " >-->
                </button>
                   
               
@@ -93,7 +92,9 @@ if(!isset($_SESSION['id'])) {
     </div>
 
     
-    <?php $sql= "SELECT * FROM posts_message  INNER JOIN user_account 
+    <?php
+    
+     $sql= "SELECT * FROM posts_message  INNER JOIN user_account 
     ON posts_message.user_id = user_account.user_id  ORDER BY post_id DESC LIMIT 21";
           
         $result = $conn->query($sql);
@@ -147,7 +148,8 @@ if(!isset($_SESSION['id'])) {
     <?php endif;?>
     <?php // else{ echo"0 result";} ?>
 
-    <?php  $conn->close();?>
+    <?php 
+     $conn->close();?>
   </div>
 </body>
 </html>
