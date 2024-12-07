@@ -26,7 +26,7 @@ if(!isset($_SESSION['id'])) {
     <div class="admin_container_div">
         <div class="admin_sidebar_div">
             <input type="submit" name="mail" value="New Post"  class="admin_input" id="admin_new_post"><br><br>
-            <a href="outbox.php?outbox=1"> <input type="submit" value="Recent Post"  class="admin_input" id="admin_recent_post"></a><br><br>
+            <a href="profile.php?profile=1"> <input type="submit" value="Recent Post"  class="admin_input" id="admin_recent_post"></a><br><br>
             <input type="submit" name="i" value="Edit Posts" class="admin_input" id="admin_edit_post"><br><br> 
             <a href="index.php?logout=1"> <input type="submit" value="Logout"  class="admin_input" id="admin_new_post"></a>   
         </div>
@@ -43,14 +43,14 @@ if(!isset($_SESSION['id'])) {
                 <?php endif; ?>
                
                 <label for="reciever" class="admin_label">Subject</label><br>
-                <input type="text" name="subject" class="admin_input"><br><br>
+                <input type="text" name="subject" class="admin_input" placeholder="Enter post title"><br><br>
                 
                 <label for="reciever" class="admin_label" >Attachment</label><br>
-                <input type="file" name="image" class="admin_input"><br><br>
+                <input type="file" name="image" class="admin_input" placeholder="choose post image"><br><br>
                 
                 <label for="reciever" class="admin_label">Category</label><br>
-                <select name="category" id="" class="admin_input">
-                    <option value="Technology">Technology</option>
+                <select name="category" id="select" class="admin_input" >
+                    <option value="Technology" class="admin_opion">Technology</option>
                     <option value="sports">sports</option>
                     <option value="entertainment">entertainment</option>
                     <option value="Politics">Politics</option>
@@ -60,7 +60,7 @@ if(!isset($_SESSION['id'])) {
                     <option value="Lifestyle">Lifestyle</option>
                 </select><br><br>
                 <label for="message" class="admin_label">Message</label><br>
-                <textarea name="message" id="message" class="admin_input" ></textarea><br><br>
+                <textarea name="message" id="message"  cols="60px" rows="10px" placeholder="Enter Message"></textarea><br><br>
                 <input type="submit" name="post" id="admi_submit_btn" value="Make Post" class="admin_input">
                 <input type="reset" name="submit" id="admi_submit_btn" class="admin_input">
             </div>
