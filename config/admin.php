@@ -1,6 +1,7 @@
 <?php 
 require_once 'controller_1.php';
 require_once 'upload.php';
+require_once 'functtions.php';
 if(!isset($_SESSION['id'])) {
     header('location:login.php');
     exit();
@@ -14,15 +15,83 @@ if(!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="uploaded_images/favicon.png">
     <title>Admin page</title>
     <link rel="stylesheet" href="controller.css">
+    <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
-    <header class="admin_header">
-        <!--<img src="controllers/SENAM.png" alt="logo" id="logo">-->
-        
-        <h2 class="admin_h2" ><a href="index.php">Create Post</a></h2>
-    </header>
+    
+
+    <header class="index_header">
+
+<div>
+  <a href="index.php"> <img src="uploaded_images/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+  </a>
+</div>
+
+<div>
+    <form method="get" action="search.php">
+       <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
+       <button name="search_btn" class="search_btn">
+       <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
+       </button>
+          
+      
+    </form>
+    
+</div>
+<?php $user_info = getUserInfo($user_id,$conn);?>
+
+<div class="index_div_container_btn">
+    <li>
+        <div class="profile_logout_div" id="create_btn">
+            <img src="icons/add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="add button">
+            <a href="admin.php" >Creat Post</a>
+        </div>
+    </li>
+    <li>
+        <div class="profile_logout_div" id="logout_btn">
+           <img src="icons/logout_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="logout button">
+           <a href="index.php?logout=1" class="logout" >Logout</a>
+        </div>
+    </li>
+    <div class="index_userprofile_photo" ><a href="profile.php?profile=1"> 
+       
+    <?php
+         
+        if(isset($user_info['user_profilephoto'])){
+            echo '<img src="uploaded_images/'. $user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+        }
+        else{
+           echo '<img src="uploaded_images/default_profile_img.png " alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+        }
+    ?>
+    </a>
+    </div>
+</div>
+</header>
+
+<div class="index_div_create">
+<div class="index_category">
+    
+    <ul>
+        <li class="index_cat_list"><a href="index.php?index=1" >All</a></li>
+        <li class="index_cat_list"><a href="tech.php?tech=1" >Technology</a></li>
+        <li class="index_cat_list"><a href="sport.php?sport=1" >Sports</a></li>
+        <li class="index_cat_list"><a href="entertainment.php?entertainment=1" >Entertainment</a></li>
+        <li class="index_cat_list"><a href="politics.php?politics=1" >Politics</a></li>
+        <li class="index_cat_list"><a href="fashion.php?fashion=1" >Fashion</a></li>
+        <li class="index_cat_list"><a href="business.php?business=1" >Business</a></li>
+        <li class="index_cat_list"><a href="health.php?health=1" >Health</a></li>
+        <li class="index_cat_list"><a href="lifestyle.php?lifestyle=1" >Lifestyle</a></li>
+
+    </ul>
+</div> 
+
+</div>
+
+
     <div class="admin_container_div">
         <div class="admin_sidebar_div">
             <input type="submit" name="mail" value="New Post"  class="admin_input" id="admin_new_post"><br><br>
@@ -42,7 +111,7 @@ if(!isset($_SESSION['id'])) {
                 </div>
                 <?php endif; ?>
                
-                <label for="reciever" class="admin_label">Subject</label><br>
+                <label for="reciever" class="admin_label">Post Headline</label><br>
                 <input type="text" name="subject" class="admin_input" placeholder="Enter post title"><br><br>
                 
                 <label for="reciever" class="admin_label" >Attachment</label><br>
