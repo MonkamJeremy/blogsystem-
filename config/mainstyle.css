@@ -1,77 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+
+
 body{
-    background-color: #f4f4f4;
+    background-color: #fff;
+}
+*{
+    padding: 0px;
+    margin: 0px;
 } 
 /*div{
     border: 1px solid #000;
 }*/
-.index_con{
-    width: 99.9%;
+
+.index_sticky_header{
+    width: 99.8%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    box-shadow: 01px 01px 4px 01px #dcdcdc;
+    
+    
 }
+
 .index_header{
+    
     background-color: #fff; 
-    padding: 0px 15px;
+    padding-right:  15px;
+    padding-left: 25px;
     height: 90px;
     display: flex;
     justify-content: space-between;
+   
     
-    
+   
     
 }
-.index_h1{
-    font-size: 27px;
-    padding: 0px  0px 0px 15px;
-    color: cadetblue;
-}
+
 .profile_logout_div{
+    display: flex;
+    justify-content: space-between;
     width: 70px;
     height: 20px;
     border-radius: 10px;
     border: 1px solid cadetblue ;
     text-align: center;
-    padding: 10px 05px;
+    
     margin-right: 10px;
 }
-.profile_logout_div:hover{
-    border: 1px solid #f4f4f4;
-    background-color: lightsalmon;
-    
 
+#logout_btn{
+    padding: 10px 08px;
+    background-color: cadetblue;
+}
+#logout_btn:hover{
+    box-shadow: 01px 01px 4px 01px #e8e8e8;
+}
+#logout_btn img{
+   width: 16px;
+   cursor: pointer;
 }
 .logout{
-    color: cadetblue;
-
-}
-.logout:hover{
     color: #fff;
+    font-family: 'Roboto', sans-serif;
+    
 }
+#create_btn{
+    width: 90px;
+    padding: 10px 06px;
+    
+    background-color: #fff;
+    cursor: pointer;
+}
+#create_btn:hover{
+    box-shadow: 01px 01px 4px 0.5px #e8e8e8;
+    
+}
+#create_btn img{
+    width: 18px;
+    cursor: pointer;
+}
+#create_btn a{
+    color: cadetblue;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+.index_div_container_btn li{
+    list-style: none;
+}
+.index_div_container_btn li a{
+    text-decoration: none;
+}
+
 .index_category ul{
     display: flex;
     padding: 06px 0px 05px 0px;
 }
-li{
+.index_category ul li{
     list-style: none;
     
 }
-li a{
+.index_category ul li a{
     text-decoration: none;
     cursor: pointer;
     color: #f4f4f4;
+    font-family:'Sofia',sans-serif;
     
 }
-
-
-.index_slogan{
-    font-size: 10px;
-    color: cadetblue;
-    padding-left: 16px;
-    margin-top: -14px;
-
+@font-face {
+    font-family: sofia;
+    src: url(fonts/Sofia-Regular.ttf);
 }
+@font-face {
+    font-family: Poppins;
+    src: url(fonts/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-Regular.ttf);
+}
+/*.sofia-regular {
+    font-family: "Sofia",sans-serif ;
+    font-weight: 400;
+    font-style: normal;
+  }
+.poppins-thin {
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
+  }*/
+
+
 
 .index_category{
  
     padding: 10px 0px ;
-    background-color:cadetblue;
+    background-color:#5f9ea0;
    
    
 }
@@ -99,19 +166,24 @@ color:#fff;
 border-radius: 02px;   
 
 }
+
+
 .index_div_content_container{
     
-    width:100%;
-    padding: 20px 0px 0px 0px;
+    margin-top: 150px;
+    padding: 10px 0px 0px 30px;
+    height: 500px;
+    margin-bottom: 140px;
  
 }
 .index_div_content{
-    width: 530px;
-    height:490px;
+    width: 330px;
+    height: 290px;
     float: left;
-   
+    border-radius: 5px;
     text-wrap: wrap;
-    margin: 20px 15px 100px 10px;
+    margin: 15px 15px 10px 10px;
+    box-shadow: 0px 03px 10px -4px #ccc;
   
 }
 #attach{
@@ -119,48 +191,50 @@ border-radius: 02px;
     object-fit: cover;
 }
 .index_div_attachement{
-    width: 530px;
-    height: 298.75px;
+    width: 330px;
+    height: 160px;
+    cursor: pointer;
     background-color: lightsalmon;
-    
-    
-    
-    
-    
+    border-radius: 5px;
+  
+}
+.index_time_div{
+    margin-left: 20%;
 }
 .index_time{
-    font-size: 14px;
-    padding: 0px 0px 0px 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    padding-top: 17px;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+    
 }
 .index_subject{
-    font-size: 22px;
+    font-size: 15px;
     text-transform:capitalize ;
-    font-weight: 500;
-    font-family:'poppins ',sans-serif;
-    padding: 05px 10px 10px 10px;
-    margin-top: -1px;
-    padding-bottom: 20px;
+    font-weight: 400;
+    font-family:'Poppins',sans-serif;
+    padding: 03px 10px 10px 02px;
+   
+    
     
    
 }
 .index_blog_message{
-    width:510px;
-    max-height: 120px;
-    overflow-y:auto;
-    margin-top: -45px;
+    width:320px;
+    max-height: 80px;
+    
+    
 }
 .index_blog_message p{
-   font-size: 18px;
+   font-size: 13px;
    color: #1e1e1e;
-   font-weight:400;
+   
    line-height: 1.5em;
-   letter-spacing: 0.1px;
-   padding:0px 02px 36px 10px;
-   font-family:sans-serif;
+   padding:0px 02px 36px 0px;
+   font-family: 'Poppins',sans-serif;
 }
 .index_div_reactions{
-    display: flex;
+    
     padding: 15px 04px;
 }
 .index_reaction_btn{
@@ -168,8 +242,8 @@ border-radius: 02px;
     
 }
 .index_div_userprofile_photo{
-    width: 38px;
-    height: 38px;
+    width: 24px;
+    height: 24px;
     margin-left: 06px;
     margin-top: 10px;
     border-radius: 50px;
@@ -183,9 +257,12 @@ border-radius: 02px;
     margin-left: 15px;
 }
 .index_username{
-    margin-top: 25px;
-    font-size: 17px;
-    padding-left: 03px;
+    margin-top: 13px;
+    font-size: 13px;
+    padding-left: 07px;
+    text-transform: capitalize;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
 }
 #index_image{
     width:100%;
@@ -201,6 +278,7 @@ border-radius: 02px;
     object-fit: cover;
 }
 
+
 #index_usermessage{
     font-size: 16px;
     color: cadetblue;
@@ -213,5 +291,48 @@ border-radius: 02px;
     padding: 13px 10px;
     border-radius: 05px;
     border: 1px solid cadetblue;
+    color: #353535;
     
+}
+
+.index_search:focus{
+    box-shadow: 01px 01px 5px 01px #e2e2e2;
+    
+}
+
+
+
+
+
+.search_btn{
+    background-color: #fff;
+    border: none;
+    margin-left: -31px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.search_btn img {
+    width: 20px;
+    
+}
+.seepost{
+    border: none;
+    background: transparent;
+    color: #5f9ea0;
+    cursor: pointer;
+}
+/* fullpost style */
+.full_div_content{
+    width: 70%;
+   
+    border: 1px solid #000;
+   
+    text-wrap: wrap;
+    margin: 0 auto;
+    
+}
+.full_div_attachement{
+    width:90%;
+    height: 300px;
+    border-radius: 5px;
 }

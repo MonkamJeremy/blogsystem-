@@ -15,7 +15,7 @@ if(!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="uploaded_images/favicon.png">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
     <title>technology page</title>
     <link rel="stylesheet" href="mainstyle.css">
   
@@ -24,7 +24,7 @@ if(!isset($_SESSION['id'])) {
   <div class="index_con">
   <header class="index_header">
         <div>
-          <a href="index.php"> <img src="uploaded_images/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+          <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
           </a>
         </div>
 

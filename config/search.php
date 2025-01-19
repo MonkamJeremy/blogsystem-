@@ -15,23 +15,15 @@ $user_input="";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="uploaded_images/favicon.png">
     <title>Document</title>
     <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
 <header class="index_header">
        <div>
-            <h1 class="index_h1">Blog System</h1>
-            <p class="index_slogan">FOR FAST AND SECURE EMAIL DELIVERY</p>
-            <p id="index_usermessage">
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                }
-                    
-                ?>
-            </p> 
+          <a href="index.php"> <img src="uploaded_images/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+          </a>
         </div>
 
         <div>
@@ -74,7 +66,7 @@ $user_input="";
        <div class="index_category">
             
             <ul>
-                <li class="index_cat_list"><a href="index.php?index=1" id="all" >All</a></li>
+                <li class="index_cat_list"><a href="index.php?index=1"  >All</a></li>
                 <li class="index_cat_list"><a href="tech.php?tech=1" >Technology</a></li>
                 <li class="index_cat_list"><a href="sport.php?sport=1" >Sports</a></li>
                 <li class="index_cat_list"><a href="entertainment.php?entertainment=1" >Entertainment</a></li>

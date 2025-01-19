@@ -11,23 +11,35 @@ require_once 'functtions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
     <title>profile page</title>
     <!--<script src="profile_photo.js" defer></script>-->
     <link rel="stylesheet" href="controller.css">
+    <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
 <header class="profile_header">
-       <div>
-            <h1 class="profile_h1"><a href="index.php">Blog System</a></h1>
-            <p class="profile_slogan">FOR FAST AND SECURE EMAIL DELIVERY</p>
+        <div>
+          <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+          </a>
         </div>
         <div>
             <h2 class="profile_h2">Profile</h2>
         </div>
 
         <div class="profile_div_btn">
-            <li class="profile_li"><div class="profile_logout_div" id="profile_create_post"><a href="admin.php?admin=1" class="profile_logout">Creat Post</a></div></li>
-            <li class="profile_li"><div class="profile_logout_div"><a href="index.php?logout=1" class="profile_logout">Logout</a></div></li>
+            <li class="profile_li">
+                <div class="profile_logout_div" id="create_btn">
+                    <img src="icons/add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="add button">
+                    <a href="admin.php?admin=1" >Creat Post</a>
+                </div>
+            </li>
+            <li class="profile_li">
+                <div class="profile_logout_div" id="logout_btn">
+                   <img src="icons/logout_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="logout button">
+                   <a href="index.php?logout=1" class="logout" >Logout</a>
+                </div>
+            </li>
         </div>
     </header>
 

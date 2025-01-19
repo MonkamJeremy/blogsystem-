@@ -264,6 +264,10 @@ li{
 /*end of signup page styling*/
 
 /*start of profile page styling*/
+@font-face {
+    font-family: Poppins;
+    src: url(fonts/Roboto-Bold.ttf);
+}
 .profile_header{
     background-color: #fff; 
     padding: 05px 15px 05px 15px;
@@ -278,6 +282,7 @@ li{
 .profile_h2{
     color: cadetblue;
     padding-top: 50px;
+    font-family: 'Poppins',sans-serif;
 }
 .profile_li{
     list-style: none;  
@@ -285,7 +290,7 @@ li{
 .profile_li a{
     text-decoration: none;
     cursor: pointer;
-    color:  cadetblue;
+    
 }
 .profile_li a:hover{
     color: #f4f4f4;
@@ -307,12 +312,7 @@ li{
 #profile_create_post{
     margin-right: 10px;
 }
-.profile_slogan{
-    font-size: 10px;
-    color: cadetblue;
-    padding-left: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .profile_div_create{
     display: flex;
     padding: 02px 0px;

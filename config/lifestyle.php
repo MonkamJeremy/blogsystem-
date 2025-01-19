@@ -15,36 +15,25 @@ if(!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
     <title>lifestyle page</title>
     <link rel="stylesheet" href="mainstyle.css">
     
-    <style>
-      
-       
-    </style>
+    
 </head>
 <body>
   <div class="index_con">
-    <header class="index_header">
-       <div>
-            <h1 class="index_h1">Blog System</h1>
-            <p class="index_slogan">FOR FAST AND SECURE EMAIL DELIVERY</p>
-            <p id="index_usermessage">
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                }
-                    
-                ?>
-            </p> 
+  <header class="index_header">
+        <div>
+          <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+          </a>
         </div>
 
         <div>
-            <form action="">
-               <input type="search" name="search" id="" class="index_search" placeholder="Search">
-               <button style="background:transparent; border:none; margin: 17px 0px 0px -30px; ">
-               <img src="img/search2.png" alt="search icon"  style="width:20px; " >
+            <form method="get" action="search.php">
+               <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
+               <button name="search_btn" class="search_btn">
+               <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
                </button>
                   
               
@@ -54,8 +43,18 @@ if(!isset($_SESSION['id'])) {
         <?php $user_info = getUserInfo($user_id,$conn);?>
 
         <div class="index_div_container_btn">
-            <li><div class="profile_logout_div"><a href="admin.php?admin=1" class="logout">Creat Post</a></div></li>
-            <li><div class="profile_logout_div"><a href="index.php?logout=1" class="logout">Logout</a></div></li>
+            <li>
+                <div class="profile_logout_div" id="create_btn">
+                    <img src="icons/add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="add button">
+                    <a href="admin.php?admin=1" >Creat Post</a>
+                </div>
+            </li>
+            <li>
+                <div class="profile_logout_div" id="logout_btn">
+                   <img src="icons/logout_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="logout button">
+                   <a href="index.php?logout=1" class="logout" >Logout</a>
+                </div>
+            </li>
             <div class="index_userprofile_photo" ><a href="profile.php?profile=1"> 
                
             <?php
@@ -71,6 +70,7 @@ if(!isset($_SESSION['id'])) {
             </div>
         </div>
     </header>
+
 
     <div class="index_div_create">
        <div class="index_category">
