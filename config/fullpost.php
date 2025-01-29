@@ -29,12 +29,12 @@ if(!isset($_SESSION['id'])) {
             <header class="index_header">
 
                 <div>
-                <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+                <a href="index.php"> <img src="icons/logo.png" alt="site_logo" class="index_logo">
                 </a>
                 </div>
 
                 <div>
-                    <form method="get" action="search.php">
+                    <form method="get" action="search.php" style="display:flex">
                     <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
                     <button name="search_btn" class="search_btn">
                     <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
@@ -44,7 +44,7 @@ if(!isset($_SESSION['id'])) {
                     </form>
                     
                 </div>
-                <?php $user_info = getUserInfo($user_id,$conn);?>
+                <?php $user_info = getUserInfo($user_id);?>
 
                 <div class="index_div_container_btn">
                     <li>
@@ -97,7 +97,7 @@ if(!isset($_SESSION['id'])) {
 
 
    
-
+       
 
         <?php
             if(isset($_GET['submit']))
@@ -109,7 +109,7 @@ if(!isset($_SESSION['id'])) {
                 
             $result = $conn->query($sql);
             if ($result-> num_rows > 0):?>
-        <div class="index_div_content_container">
+        <div class="full_div_content_container">
             
             
             <?php $row = $result->fetch_assoc()?>
@@ -121,21 +121,25 @@ if(!isset($_SESSION['id'])) {
                 </div>
 
                 <div style="display:flex;">
-                        <div class="index_div_userprofile_photo">
-                        <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="index_div_userprofile_photo" >
+                        <div class="full_div_userprofile_photo">
+                        <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="full_div_userprofile_photo" >
                         </div>
-                        <p class="index_username"><?php echo $row['user_name']?></p>
-                        <div class="index_time_div">
-                            <p class="index_time"><?Php $post_time = date("F j,Y g:i A", strtotime($row["post_created_at"]));
+                        <p class="full_username"><?php echo $row['user_name']?></p>
+                        <div class="full_time_div">
+                            <p class="full_time"><?Php $post_time = date("g:i a M j,Y ", strtotime($row["post_created_at"]));
                             echo  $post_time?></p>
+                        </div>
+                        <div class="full_reaction_btn">                        
+                            <button><img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like-button">0</button>                        
+                            <button><img src="icons/share.png" alt="share-button">  0</button>
                         </div>
                 </div>
                 
 
 
                 <div style="padding:0px 08px;">
-                    <h4 class="index_subject"><?php echo $row["post_subject"]?></h4>
-                    <div class="index_blog_message">
+                    <h4 class="full_subject"><?php echo $row["post_subject"]?></h4>
+                    <div class="full_blog_message">
                         <p ><?Php echo $row["post_message"]?>
                         </p>
                         <?php $post_id =$row['post_id']?>
@@ -148,28 +152,101 @@ if(!isset($_SESSION['id'])) {
                 
                 
             
-
-                <div class="index_div_reactions">
-                    <form action="">
-                            <input type="text" name="comment" placeholder="leave a coment">
-                            <button>done</button>
+               
+                <div class="full_div_reactions">
+                    <form action="fullpost.php" method="post">
+                        <textarea name="comment" class="full_comment" cols="0" rows="0" placeholder="leave a coment"></textarea>
+                        <input type="hidden" name="user_id" id="" value="<?php $userc_id = $user_info['user_id']; echo $userc_id  ?>">
+                        <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
+                        <input type="submit" name="submit" class="full_comment_done" value="Done">
                     </form>
-                    <div class="index_reaction_btn">
-                        
-                        <button>like</button>
-                        
-                        <button>share</button>
+                    <div class="full_pipo_comment"> 
+                       
+                        <p><?php saveComment();
+                        retrieveComments($post_id)?></p>
                     </div>
+                    
                     
                 </div>
             </div>
             
+           
 
+            <?php endif;?>
+
+            <div class="full_sidebar">
+                <?php
+                
+                $sql= "SELECT * FROM posts_message  INNER JOIN user_account 
+                ON posts_message.user_id = user_account.user_id  ORDER BY post_id DESC LIMIT 2";
+                
+                $result = $conn->query($sql);
+                if ($result-> num_rows > 0):?>
+           
+                
+                
+                <?php while($row = $result->fetch_assoc()):?>
+                <div class="index_div_content" >
+                    <div class="index_div_attachement">
+                        <form action="fullpost.php" method="get">
+                        <?php $post_id = $row['post_id']?>
+                    <button  name="submit" style="border:none;background:transparent;"> <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>" class="index_div_attachement" id="attach" onclick=" handleclick($post_id)">
+                    <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
+                    </button>
+                        </form>
+                    
+                    </div>
+
+                    <div style="display:flex;">
+                            <div class="index_div_userprofile_photo">
+                            <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="index_div_userprofile_photo" >
+                            </div>
+                            <p class="index_username"><?php echo $row['user_name']?></p>
+                            <div class="index_time_div">
+                                <p class="index_time"><?Php $post_time = date("g:i a M j,Y ", strtotime($row["post_created_at"]));
+                                echo  $post_time?></p>
+                            </div>
+                    </div>
+                    
+
+
+                    <div style="padding:0px 08px;">
+                        <h4 class="index_subject"><?php echo $row["post_subject"]?></h4>
+                        <div class="index_blog_message">
+                        <!--<p >Php// echo $row["post_message"]?>
+                        </p>-->
+                        <?php $post_id =$row['post_id']?>
+                        
+                        </div>
+                        <form action="fullpost.php" method="get" class="div_button">
+                            <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">                        
+                            <button class="seepost" name="submit">                                
+                                <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" ><a>View post</a>  
+                            </button>
+                            <div class="div_react_btn">
+                                <img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
+                                <img src="icons/comment2.png" alt="" class="react_btn"><span>0</span>
+                                <img src="icons/share.png" alt="" class="react_btn"><span>0</span>
+                            </div>
+                        </form>
+                        
+                    
+                    </div>
+                </div>
+                
+            
+
+           
+              <?php endwhile;?>
+            </div>
+                
+        
+        
+            <?php endif;?>
             
         
         </div>
-        <?php endif;?>
-        <?php // else{ echo"0 result";} ?>
+       
     
         <?php 
         $conn->close();?>

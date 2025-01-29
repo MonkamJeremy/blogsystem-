@@ -18,32 +18,75 @@ require_once 'functtions.php';
     <link rel="stylesheet" href="mainstyle.css">
 </head>
 <body>
-<header class="profile_header">
-        <div>
-          <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
-          </a>
-        </div>
-        <div>
-            <h2 class="profile_h2">Profile</h2>
-        </div>
+<div class="index_sticky_header">
+            <header class="index_header">
 
-        <div class="profile_div_btn">
-            <li class="profile_li">
-                <div class="profile_logout_div" id="create_btn">
-                    <img src="icons/add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="add button">
-                    <a href="admin.php?admin=1" >Creat Post</a>
+                <div>
+                <a href="index.php"> <img src="icons/logo.png" alt="site_logo" class="index_logo" >
+                </a>
                 </div>
-            </li>
-            <li class="profile_li">
-                <div class="profile_logout_div" id="logout_btn">
-                   <img src="icons/logout_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="logout button">
-                   <a href="index.php?logout=1" class="logout" >Logout</a>
-                </div>
-            </li>
-        </div>
-    </header>
 
-    <?php  $user_info = getUserInfo($user_id,$conn);?>
+                <div>
+                    <form method="get" action="search.php" style="display:flex">
+                    <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
+                    <button name="search_btn" class="search_btn">
+                    <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
+                    </button>
+                        
+                    
+                    </form>
+                    
+                </div>
+                <?php $user_info = getUserInfo($user_id);?>
+
+                <div class="index_div_container_btn">
+                    <li>
+                        <div class="profile_logout_div" id="create_btn">
+                            <img src="icons/add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="add button">
+                            <a href="admin.php" >Creat Post</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="profile_logout_div" id="logout_btn">
+                        <img src="icons/logout_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="logout button">
+                        <a href="index.php?logout=1" class="logout" >Logout</a>
+                        </div>
+                    </li>
+                    <div class="index_userprofile_photo" ><a href="profile.php?profile=1"> 
+                    
+                    <?php
+                        
+                        if(isset($user_info['user_profilephoto'])){
+                            echo '<img src="uploaded_images/'. $user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+                        }
+                        else{
+                        echo '<img src="uploaded_images/default_profile_img.png " alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+                        }
+                    ?>
+                    </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="index_div_create">
+            <div class="index_category">
+                    
+                    <ul>
+                        <li class="index_cat_list"><a href="index.php?index=1" id="all" >All</a></li>
+                        <li class="index_cat_list"><a href="tech.php?tech=1" >Technology</a></li>
+                        <li class="index_cat_list"><a href="sport.php?sport=1" >Sports</a></li>
+                        <li class="index_cat_list"><a href="entertainment.php?entertainment=1" >Entertainment</a></li>
+                        <li class="index_cat_list"><a href="politics.php?politics=1" >Politics</a></li>
+                        <li class="index_cat_list"><a href="fashion.php?fashion=1" >Fashion</a></li>
+                        <li class="index_cat_list"><a href="business.php?business=1" >Business</a></li>
+                        <li class="index_cat_list"><a href="health.php?health=1" >Health</a></li>
+                        <li class="index_cat_list"><a href="lifestyle.php?lifestyle=1" >Lifestyle</a></li>
+
+                    </ul>
+                </div> 
+                
+            </div>
+        </div>
     
 
 
@@ -62,12 +105,12 @@ require_once 'functtions.php';
 
             <ul class="profile_userdetails">
                 <form action="profile.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="username" style="width: 190px; padding: 3px; text-align:left" id="username" value="<?php echo $user_info['user_name'];?>"><br><br>
-                <input type="file"  name="image" class="profile_file" id="profile_img" style="width: 190px; padding: 3px;" ><br><br>
+                <input type="text" name="username" class="input"   id="username" value="<?php echo $user_info['user_name'];?>"><br><br>
+                <input type="file"  name="image" class="input"  id="profile_img"  ><br><br>
                 
-                <input type="text" name="useremail" style="width: 190px; padding: 3px;"  id="useremail" value=" <?php echo $user_info['user_email'];?>"><br> <br> 
+                <input type="text" name="useremail" class="input" id="useremail" value=" <?php echo $user_info['user_email'];?>"><br> <br> 
                 
-                <input type="submit" name="update" style="width: 200px; padding: 3px;" value="Edit profile">
+                <input type="submit" name="update" class="input"   value="Edit profile">
                 </form>
             
             </ul>
@@ -89,7 +132,7 @@ require_once 'functtions.php';
                     <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>">
                 </div>
                 <div>
-                    <p class="profile_time"><?Php $post_time = date("F j,Y g:i A", strtotime($row["post_created_at"]));
+                    <p class="profile_time"><?Php $post_time = date(" g:i a M j,Y ", strtotime($row["post_created_at"]));
                     echo  $post_time?></p>
                 </div>
                 <div style="padding:0px 08px;">

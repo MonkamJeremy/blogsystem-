@@ -2,12 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
 
-
-
-body{
-    background-color: #fff;
-}
-*{
+@media screen and (max-width:1200px) {
+    body{
+        background-color: #fff;
+    }
+    *{
     padding: 0px;
     margin: 0px;
 } 
@@ -33,11 +32,7 @@ body{
     padding-left: 25px;
     height: 90px;
     display: flex;
-    justify-content: space-between;
-   
-    
-   
-    
+    justify-content: space-between;    
 }
 
 .profile_logout_div{
@@ -45,13 +40,14 @@ body{
     justify-content: space-between;
     width: 70px;
     height: 20px;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid cadetblue ;
-    text-align: center;
-    
+    text-align: center;    
     margin-right: 10px;
 }
-
+.index_logo{
+    width: 150px; margin-top:-29px;
+}
 #logout_btn{
     padding: 10px 08px;
     background-color: cadetblue;
@@ -70,14 +66,13 @@ body{
 }
 #create_btn{
     width: 90px;
-    padding: 10px 06px;
-    
+    padding: 10px 06px;    
     background-color: #fff;
     cursor: pointer;
 }
 #create_btn:hover{
-    box-shadow: 01px 01px 4px 0.5px #e8e8e8;
-    
+    border: none;
+    box-shadow: 01px 03px 3px 02px #e2e2e2;    
 }
 #create_btn img{
     width: 18px;
@@ -145,11 +140,11 @@ body{
 
 .index_div_container_btn{
     display: flex;
-    padding: 25px 40px 0px 0px;
+    padding: 25px 30px 0px 10px;
 }
 .index_cat_list a{
     margin: 0px 0px 0px 20px;
-    padding: 06px 23px;
+    padding: 04px 18px;
     
     
 }
@@ -163,27 +158,28 @@ body{
 background-color:lightsalmon;
 color:#fff;
 
-border-radius: 02px;   
+border-radius: 05px;   
 
 }
+
 
 
 .index_div_content_container{
     
     margin-top: 150px;
-    padding: 10px 0px 0px 30px;
+    padding: 10px 0px 0px 15px;
     height: 500px;
     margin-bottom: 140px;
  
 }
 .index_div_content{
-    width: 330px;
-    height: 290px;
+    width: 310px;
+    height: 265px;
     float: left;
-    border-radius: 5px;
+    border-radius: 10px;
     text-wrap: wrap;
-    margin: 15px 15px 10px 10px;
-    box-shadow: 0px 03px 10px -4px #ccc;
+    margin: 15px 15px 10px 10px;    
+    background-color:#f4f4f4;
   
 }
 #attach{
@@ -191,15 +187,18 @@ border-radius: 02px;
     object-fit: cover;
 }
 .index_div_attachement{
-    width: 330px;
+    width: 310px;
     height: 160px;
     cursor: pointer;
     background-color: lightsalmon;
-    border-radius: 5px;
-  
+    border-radius: 5px;  
+}
+
+.index_div_attachement:hover{
+       border-radius:0px ;
 }
 .index_time_div{
-    margin-left: 20%;
+    margin-left: 80px;
 }
 .index_time{
     font-size: 12px;
@@ -208,6 +207,7 @@ border-radius: 02px;
     color: #5f9ea0;
     
 }
+
 .index_subject{
     font-size: 15px;
     text-transform:capitalize ;
@@ -227,20 +227,12 @@ border-radius: 02px;
 }
 .index_blog_message p{
    font-size: 13px;
-   color: #1e1e1e;
-   
+   color: #1e1e1e;   
    line-height: 1.5em;
    padding:0px 02px 36px 0px;
    font-family: 'Poppins',sans-serif;
 }
-.index_div_reactions{
-    
-    padding: 15px 04px;
-}
-.index_reaction_btn{
-    margin-left: 20px;
-    
-}
+
 .index_div_userprofile_photo{
     width: 24px;
     height: 24px;
@@ -251,10 +243,28 @@ border-radius: 02px;
     object-fit: cover;
     
 }
-.index_div_reactions button{
-    height: 20px;
-    margin-top: 25px;
-    margin-left: 15px;
+.comm_div_userprofile_photo{
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+    
+}
+.div_button{
+    display: flex;
+    padding: 04px 0px 10px 04px ;
+}
+.div_react_btn{
+    margin-left: 50px;
+}
+.react_btn{
+    width: 19px;
+    margin: 0px 9px;
+}
+ span{
+    font-size: 14px;
+    margin-left: -3px;
 }
 .index_username{
     margin-top: 13px;
@@ -288,7 +298,7 @@ border-radius: 02px;
 .index_search{
     margin: 25px 0px 0px 0px;
     width: 500px;
-    padding: 13px 10px;
+    padding: 12px 10px;
     border-radius: 05px;
     border: 1px solid cadetblue;
     color: #353535;
@@ -296,23 +306,22 @@ border-radius: 02px;
 }
 
 .index_search:focus{
-    box-shadow: 01px 01px 5px 01px #e2e2e2;
+    box-shadow: 01px 03px 3px 02px #e2e2e2;
+    border:none;
+    outline:0px solid #5f9ea0 ;
     
 }
-
-
-
-
 
 .search_btn{
     background-color: #fff;
     border: none;
-    margin-left: -31px;
-    margin-top: 20px;
+    height: 13px;
+    margin-left: -30px;
+    margin-top: 37px;
     cursor: pointer;
 }
 .search_btn img {
-    width: 20px;
+    width: 21px;
     
 }
 .seepost{
@@ -321,18 +330,573 @@ border-radius: 02px;
     color: #5f9ea0;
     cursor: pointer;
 }
+.seepost img{
+    width: 15px;
+}
+.seepost a{
+    font-size: 15px;
+}
 /* fullpost style */
+.full_div_content_container{ 
+    display: flex;
+    margin-top: 150px;
+    padding: 10px 0px 40px 30px;    
+}
 .full_div_content{
-    width: 70%;
-   
-    border: 1px solid #000;
-   
-    text-wrap: wrap;
-    margin: 0 auto;
-    
+    width: 55%;   
+      
+    text-wrap: wrap;    
 }
 .full_div_attachement{
-    width:90%;
-    height: 300px;
+    width:96%;
+    height: 290px;
     border-radius: 5px;
+}
+.full_time_div{
+    margin-left:14%;
+}
+.full_time{
+    font-size: 13px;
+    padding-top: 26px;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+    
+}
+.full_subject{
+    font-size: 18px;
+    text-transform:capitalize ;
+    font-weight: 400;
+    font-family:'Poppins',sans-serif;
+    padding: 13px 10px 04px 02px;
+
+}
+.full_blog_message{
+    width:85%;
+ 
+}
+.full_blog_message p{
+   font-size: 15px;
+   color: #1e1e1e;   
+   line-height: 1.6em;
+   padding:0px 02px 6px 0px;
+   font-family: 'Poppins',sans-serif;
+}
+.full_div_reactions{
+    padding: 10px 04px;
+}
+.full_div_reactions form{
+    display: flex;
+}
+.full_reaction_btn{
+    margin-left: 20px;
+    padding: 22px 0px 0px 0px;
+    
+}
+.full_reaction_btn button{
+    background-color: transparent;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.full_reaction_btn img{
+    width: 25px;
+}
+.full_div_userprofile_photo{
+    width: 34px;
+    height:34px;
+    margin-left: 06px;
+    margin-top: 10px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+    
+}
+.full_div_reactions button{
+    height: 20px;
+    margin-top: 25px;
+    margin-left: 15px;
+}
+.full_username{
+    margin-top: 22px;
+    font-size: 15px;
+    padding-left: 07px;
+    text-transform: capitalize;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+}
+#full_image{
+    width:100%;
+}
+.full_comment{
+    width: 65%;
+    padding: 05px 05px;
+    border-radius: 05px;
+}
+.full_comment_done{
+    width:70px;
+    padding: 03px 05px 03px 05px;
+    margin-left: 10px;
+    
+}
+.full_pipo_comment{
+    width: 90%;
+    margin: 20px 0px 0px 0px ;
+    padding:15px 0px 15px 05px ;
+    border:1px solid #ccc ;
+    border-radius: 10px;
+}
+.full_sidebar{
+    width: 39%;
+}
+} 
+
+
+
+@media screen and (max-width: 400px) {
+    body{
+        background-color: #fff;
+    }
+    *{
+    padding: 0px;
+    margin: 0px;
+} 
+/*div{
+    border: 1px solid #000;
+}*/
+
+.index_sticky_header{
+    width: 100%;
+    position: fixed;  
+    top: 0px;  
+    left: 0px;
+    box-shadow: none;
+}
+
+.index_header{    
+    background-color: #fff;   
+    height: 40px;
+   display: flex;
+   justify-content: space-around;
+    padding: 0px 0px;    
+}
+
+.profile_logout_div{
+    display: flex;
+    justify-content: unset;
+    width: 30px;
+    height: 15px;
+    border-radius: 2px;
+    border: 1px solid cadetblue ;
+    text-align: center;    
+   
+
+}
+.index_logo{
+    width: 60px;
+    margin-top:-10px;
+    margin-left: 5px;
+}
+#logout_btn{
+    width: 50px;
+    padding:4px 0px 0px 02px;
+    background-color: cadetblue;
+    margin-left: -7px;
+}
+#logout_btn:hover{
+    box-shadow: 01px 01px 4px 01px #e8e8e8;
+}
+#logout_btn img{
+   width:10px;
+   height: 10px;
+   cursor: pointer;
+   margin-top: 0px;
+   margin-right: 3px;
+}
+#logout_btn a{
+    font-family: 'Roboto', sans-serif;
+    font-size:9px;
+}
+.logout{
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    
+}
+#create_btn{
+    width: 57px;
+    padding: 04px 01px 0px 0px;    
+    background-color: #fff;
+    cursor: pointer;
+    margin-left: 13px;
+}
+#create_btn:hover{
+    border: none;
+    box-shadow: 01px 03px 3px 02px #e2e2e2;    
+}
+#create_btn img{
+    width:10px;
+    height: 10px;
+    cursor: pointer;
+    margin-top: 0px;
+}
+#create_btn a{
+    color: cadetblue;
+    font-family: 'Roboto', sans-serif;
+    font-size: 9px;
+}
+.index_div_container_btn li{
+    list-style: none;
+}
+.index_div_container_btn li a{
+    text-decoration: none;
+}
+
+.index_category ul{
+    display: flex;
+    padding: 02px 0px 02px 0px;
+}
+.index_category ul li{
+    list-style: none;
+    
+}
+.index_category ul li a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #f4f4f4;
+    font-family:'Sofia',sans-serif;
+    
+}
+@font-face {
+    font-family: sofia;
+    src: url(fonts/Sofia-Regular.ttf);
+}
+@font-face {
+    font-family: Poppins;
+    src: url(fonts/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/Roboto-Regular.ttf);
+}
+
+
+
+.index_category{
+    
+    padding: 02px 0px ;
+    background-color:#5f9ea0;
+   
+   
+}
+
+.index_div_container_btn{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px 0px 0px;
+}
+.index_cat_list a{
+    margin: 0px 0px 0px 05px;
+    padding: 02px 03px;
+    font-size: 09px;
+    
+}
+.index_cat_list a:hover{
+    color: #fff;
+    background-color:lightsalmon ;    
+    border-radius: 02px;}
+
+#all{
+background-color:lightsalmon;
+color:#fff;
+border-radius: 02px;   
+
+}
+
+
+
+.index_div_content_container{
+    
+    margin-top: 55px;
+    padding: 10px 0px 0px 07px;
+    height: 500px;
+    margin-bottom: 140px;
+ 
+}
+.index_div_content{
+    width: 175px;
+    height: 165px;
+    float: left;
+    border-radius: 10px;
+    text-wrap: wrap;
+    margin: 10px 5px 10px 07px;    
+    background-color:#f4f4f4;
+  
+}
+#attach{
+    
+    object-fit: cover;
+}
+.index_div_attachement{
+    width:175px;
+    height: 90px;
+    cursor: pointer;
+    background-color: lightsalmon;
+    border-radius: 5px;  
+}
+
+.index_div_attachement:hover{
+       border-radius:0px ;
+}
+.index_time_div{
+    margin-left: 19px;
+}
+.index_time{
+    font-size: 8px;
+    padding-top: 14px;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+    
+}
+.index_subject{
+    font-size: 10px;
+    text-transform:capitalize ;
+    font-weight: 400;
+    font-family:'Poppins',sans-serif;
+    padding: 04px 6px 4px 02px;
+   
+}
+
+
+.index_div_reactions{
+    
+    padding:5px 04px;
+}
+.index_reaction_btn{
+    margin-left: 20px;
+    
+}
+.index_div_userprofile_photo{
+    width: 16px;
+    height: 16px;
+    margin-left: 06px;
+    margin-top: 10px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+    
+}
+.comm_div_userprofile_photo{
+    width: 14px;
+    height: 14px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+    
+}
+
+.index_username{
+    margin-top: 13px;
+    font-size: 9px;
+    padding-left: 02px;
+    text-transform: capitalize;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+}
+#index_image{
+    width:100%;
+
+
+}
+.index_userprofile_photo{
+    width: 21px;
+    height: 21px;
+    margin: 0px 05px 0px -8px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+}
+.div_button{
+    display: flex;
+    padding: 04px 0px 10px 04px ;
+}
+.div_react_btn{
+    margin-left: 15px;
+}
+.react_btn{
+    width: 13px;
+    margin: 02px 5px 0px 5px;
+}
+ span{
+    font-size: 8px;
+    margin-left: -3px;
+}
+
+#index_usermessage{
+    font-size: 16px;
+    color: cadetblue;
+    padding: 15px 10px;
+    
+}
+.index_search{
+    margin: 12px 0px 0px 05px;
+    width: 153px;
+    padding: 3px 1px;
+    border-radius: 03px;
+    border: 1px solid cadetblue;
+    color: #353535;
+    font-size: 9px;
+    
+}
+
+.index_search:focus{
+    box-shadow: 01px 01px 2px 1px #e2e2e2;
+    border:none;
+    outline:0px solid #5f9ea0 ;
+    
+}
+
+.search_btn{
+    background-color: #fff;
+    border: none;
+    height: 10px;
+    margin-left:-15px;
+    margin-top: 16px;
+    cursor: pointer;
+    
+    
+}
+.search_btn img {
+    width: 12px;
+    height: 12px;
+}
+.seepost{
+    border: none;
+    background: transparent;
+    color: #5f9ea0;
+    cursor: pointer;
+    font-size: 5px;
+}
+.seepost img{
+    width: 10px;
+}
+.seepost a{
+    font-size: 09px;
+}
+/* fullpost style */
+.full_div_content_container{ 
+    width: 100%;
+    display: block;
+    margin-top: 70px;    
+    padding: 10px 04px 20px 0px;    
+}
+.full_div_content{
+    width: 95%;        
+    text-wrap: wrap;    
+}
+.full_div_attachement{
+    width:95%;
+    height: 115px;
+    border-radius: 5px;
+    margin: auto;
+    
+}.full_time_div{
+    margin-left: 30%;
+}
+
+.full_time{
+    font-size: 9px;
+    padding-top: 14px;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+    
+}
+.full_subject{
+    font-size: 12px;
+    text-transform:capitalize ;
+    font-weight: 400;
+    font-family:'Poppins',sans-serif;
+    padding: 5px 10px 04px 02px;
+
+}
+.full_blog_message{
+    width:100%;
+ 
+}
+.full_blog_message p{
+   font-size: 10px;
+   color: #1e1e1e;   
+   line-height: 1.6em;
+   padding:0px 03px 6px 03px;
+   font-family: 'Poppins',sans-serif;
+}
+
+.full_div_reactions form{
+    display: flex;
+}
+.full_reaction_btn{
+    margin-left: 13px;
+    padding: 12px 0px 0px 0px;
+    
+}
+.full_reaction_btn button{
+    background-color: transparent;
+    border: none;
+    margin-left: 05px;
+    cursor: pointer;
+    font-size: 8px;
+}
+.full_reaction_btn img{
+    width:12px;
+}
+.full_div_userprofile_photo{
+    width: 18px;
+    height:18px;
+    margin-left: 09px;
+    margin-top: 10px;
+    border-radius: 50px;
+    background-color: #ccc;
+    object-fit: cover;
+    
+}
+
+.full_username{
+    margin-top: 13px;
+    font-size: 10px;
+    padding-left: 04px;
+    text-transform: capitalize;
+    font-family: 'Poppins',sans-serif;
+    color: #5f9ea0;
+}
+#full_image{
+    width:100%;
+}
+.full_comment{
+    width: 70%;
+    padding: 01px 05px;
+    border-radius: 03px;
+    font-size: 9px;
+    margin-left: 09px;
+}
+.full_comment_done{
+    width:50px;
+    padding: 01px 05px 03px 05px;
+    margin-left: 9px;
+    font-size: 9px;
+   
+}
+
+.full_pipo_comment{
+    width: 90%;
+    margin: 10px 0px 0px 09px ;
+    padding:10px 0px 10px 05px ;
+    border:1px solid #ccc ;
+    border-radius: 5px;
+    font-size: 9px;
+}
+.full_sidebar{
+ width: 100%; 
+
+
+}
+
 }

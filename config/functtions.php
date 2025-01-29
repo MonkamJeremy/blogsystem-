@@ -1,9 +1,10 @@
 <?php 
+require "connet.php";
 require_once 'controller_1.php'; 
- $conn = new mysqli($host,$user,$password,$database);
+//$conn = new mysqli($host,$user,$password,$database);
  $user_id = $_SESSION['id'];
 //function for fetching user info
-    function getUserInfo($id,$conn){
+    function getUserInfo($id){
     global $conn;
     $query = "SELECT * FROM user_account WHERE user_id = '$id'";
     $result = mysqli_query($conn,$query);
@@ -106,13 +107,103 @@ function updatepost(){
    
 }
 
+//function to handle comment on post
+function saveComment(){
+    if(isset($_POST['submit'])){
+        $post_id = $_POST['post_id'];
+        $user_id = $_POST['user_id'];
+        $comment_message = $_POST['comment'];
+        $created_at = date("Y-m-d H:i:s");
+        global $conn;
+
+      $sql = "INSERT INTO comments(post_id,user_id,comments_message,created_at)
+       VALUES('$post_id','$user_id','$comment_message','$created_at')";
+
+       if(mysqli_query($conn,$sql)){
+                
+        echo'comment sucessfully!';
+        }else{
+        echo'error uploading image!';
+        }
+    }
+    
+}
+
+  
+
+  // funtion to retrieve user comments
+  function retrieveComments($post_id){
+    global $conn;
+    $sql = "SELECT * FROM comments INNER JOIN posts_message ON comments.post_id = posts_message.post_id
+    INNER JOIN user_account ON comments.user_id = user_account.user_id WHERE posts_message.post_id = $post_id
+     ORDER BY created_at DESC  ";
+
+    $result = mysqli_query($conn,$sql);
+
+    if($result-> num_rows > 0){
+        while($row = $result->fetch_assoc()){
+        echo "<head>
+        <link rel='stylesheet' href='mainstyle.css'>
+        </head>
+        <div style ='display: flex;'>
+        <div class='comm_div_userprofile_photo'>
+           <img src ='uploaded_images/$row[user_profilephoto]' alt ='user_profilephoto' class='comm_div_userprofile_photo'>
+        </div>
+        <p style='padding-left:03px'>@$row[user_name]</p><br>
+        </div>";
+          
+         echo"<p style='padding-left:13px; padding-top:05px;'>... $row[comments_message]</p><br>";
+        }
+    }else{
+      echo "...No comment found";
+    }
+  }
 
 
 
-
-
-
-
+ /* function like_post($post_id, $user_id) {
+    global $conn;
+    $sql = "INSERT INTO likes (post_id, user_id) VALUES ('$post_id', '$user_id')";
+    if ($conn->query($sql) === TRUE) {
+      echo "Post liked successfully!";
+    } else {
+      echo "Error liking post: " . $conn->error;
+    }
+  }
+  
+  // Function to unlike a post
+  function unlike_post($post_id, $user_id) {
+    global $conn;
+    $sql = "DELETE FROM likes WHERE post_id = '$post_id' AND user_id = '$user_id'";
+    if ($conn->query($sql) === TRUE) {
+      echo "Post unliked successfully!";
+    } else {
+      echo "Error unliking post: " . $conn->error;
+    }
+  }
+  
+  // Function to check if a user has liked a post
+  function has_liked_post($post_id, $user_id) {
+    global $conn;
+    $sql = "SELECT * FROM likes WHERE post_id = '$post_id' AND user_id = '$user_id'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  // Example usage
+  $post_id = 1; // Replace with the actual post ID
+  $user_id = 1; // Replace with the actual user ID
+  
+  if (has_liked_post($post_id, $user_id)) {
+    unlike_post($post_id, $user_id);
+  } else {
+    like_post($post_id, $user_id);
+  }
+ */
 
 
    

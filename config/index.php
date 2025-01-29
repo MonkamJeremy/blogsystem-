@@ -29,23 +29,21 @@ if(!isset($_SESSION['id'])) {
         <div class="index_sticky_header">
             <header class="index_header">
 
-                <div>
-                <a href="index.php"> <img src="icons/logo.png" alt="site_logo" style="width: 150px; margin-top:-29px;" >
+                <div class="logo">
+                <a href="index.php"> <img src="icons/logo.png" alt="site_logo" class="index_logo" >
                 </a>
                 </div>
 
                 <div>
-                    <form method="get" action="search.php">
-                    <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
-                    <button name="search_btn" class="search_btn">
-                    <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
-                    </button>
-                        
-                    
+                    <form method="get" action="search.php" style="display:flex">
+                        <input type="search" name="search_data" id="" class="index_search" placeholder="Search" >
+                        <button name="search_btn" class="search_btn">
+                        <img src="icons/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="search icon"   >
+                        </button>                    
                     </form>
                     
                 </div>
-                <?php $user_info = getUserInfo($user_id,$conn);?>
+                <?php $user_info = getUserInfo($user_id);?>
 
                 <div class="index_div_container_btn">
                     <li>
@@ -60,18 +58,17 @@ if(!isset($_SESSION['id'])) {
                         <a href="index.php?logout=1" class="logout" >Logout</a>
                         </div>
                     </li>
-                    <div class="index_userprofile_photo" ><a href="profile.php?profile=1"> 
-                    
-                    <?php
-                        
-                        if(isset($user_info['user_profilephoto'])){
-                            echo '<img src="uploaded_images/'. $user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
-                        }
-                        else{
-                        echo '<img src="uploaded_images/default_profile_img.png " alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
-                        }
-                    ?>
-                    </a>
+                    <div class="index_userprofile_photo" >
+                        <a href="profile.php?profile=1">                         
+                            <?php                                
+                                if(isset($user_info['user_profilephoto'])){
+                                    echo '<img src="uploaded_images/'. $user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+                                }
+                                else{
+                                echo '<img src="uploaded_images/default_profile_img.png " alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+                                }
+                            ?>
+                        </a>
                     </div>
                 </div>
             </header>
@@ -126,7 +123,7 @@ if(!isset($_SESSION['id'])) {
                         </div>
                         <p class="index_username"><?php echo $row['user_name']?></p>
                         <div class="index_time_div">
-                            <p class="index_time"><?Php $post_time = date("F j,Y g:i A", strtotime($row["post_created_at"]));
+                            <p class="index_time"><?Php $post_time = date(" g:i a  M d,Y ", strtotime($row["post_created_at"]));
                             echo  $post_time?></p>
                         </div>
                 </div>
@@ -141,13 +138,23 @@ if(!isset($_SESSION['id'])) {
                     <?php $post_id =$row['post_id']?>
                     
                     </div>
-                    <form action="fullpost.php" method="get">
-                    <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
-                        <button class="seepost" name="submit">
-                            
-                            <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" style="width:15px">View post
-                        </button>
+                    
+                    <form action="fullpost.php" method="get" class="div_button" >
+                        <div>
+                            <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
+                            <button class="seepost" name="submit">                            
+                                <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" >
+                                <a>View post</a>  
+                            </button>
+                        </div> 
+                        <div class="div_react_btn">
+                            <img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
+                            <img src="icons/comment2.png" alt="" class="react_btn"><span>0</span>
+                            <img src="icons/share.png" alt="" class="react_btn"><span>0</span>
+                        </div>
                     </form>
+                    
+                   
                     
                 
                 </div>
@@ -164,8 +171,7 @@ if(!isset($_SESSION['id'])) {
         <?php endif;?>
         <?php // else{ echo"0 result";} ?>
         
-        <?php 
-        $conn->close();?>
+      
     </div>
   <script src="index.js"></script>
 </body>
