@@ -150,9 +150,9 @@ if(!isset($_SESSION['id'])) {
                         <div class="div_react_btn">
                           <input type="hidden" id="post-id" name="post_id" value=" <?php echo $row['post_id']?>">
                           <input type="hidden" name="" id="user-id" value="<?php echo $user_info['user_id']?>">
-                          <button type="submit" class="submit_reactions" id="reaction-button"> <img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn"><span>0</span></button> 
-                           <button type="submit"  class="submit_reactions"> <img src="icons/dislike.png" alt="" class="react_btn"><span>0</span></button>
-                          <button type="submit"  class="submit_reactions"> <img src="icons/share.png" alt="" class="react_btn"><span>0</span></button> 
+                          <button type="submit" class="submit_reactions" id="reaction-button"> <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn"><span>0</span></button> 
+                           <button type="submit"  class="submit_reactions"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span></button>
+                          <button type="submit"  class="submit_reactions"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span></button> 
                         </div>
                     </form>
                     
