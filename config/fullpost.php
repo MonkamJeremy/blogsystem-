@@ -160,7 +160,7 @@ if(!isset($_SESSION['id'])) {
                         <input type="hidden" id ="user_id"  value="<?php echo $user_info['user_id'] ?>">
                         <input type="hidden" name="post_id" id="post_id" value=" <?php echo $row['post_id']?>">
                         
-                        <button class="full_comment_done" id="comment_btn">Done</button>
+                        <button type="button" class="full_comment_done" id="comment_btn">Done</button>
                     </form>
                     <div class="full_pipo_comment"  > 
                        
