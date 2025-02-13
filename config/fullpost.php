@@ -19,8 +19,9 @@ if(!isset($_SESSION['id'])) {
     <title>home page</title>
     
     <link rel="stylesheet" href="mainstyle.css">
-     <script src="index.js"></script>
-    
+     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
    
 </head>
 <body>
@@ -154,16 +155,17 @@ if(!isset($_SESSION['id'])) {
             
                
                 <div class="full_div_reactions">
-                    <form action="fullpost.php" method="post">
-                        <textarea name="comment" class="full_comment" cols="0" rows="0" placeholder="leave a coment"></textarea>
-                        <input type="hidden" name="user_id" id="" value="<?php $userc_id = $user_info['user_id']; echo $userc_id  ?>">
-                        <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
-                        <input type="submit" name="submit" class="full_comment_done" value="Done">
+                    <form  id="comment-form" action="fullpost.php" method="post">
+                        <textarea name="comment" class="full_comment" id="comment_text"  cols="0" rows="0" placeholder="leave a coment"></textarea>
+                        <input type="hidden" id ="user_id"  value="<?php echo $user_info['user_id'] ?>">
+                        <input type="hidden" name="post_id" id="post_id" value=" <?php echo $row['post_id']?>">
+                        
+                        <button class="full_comment_done" id="comment_btn">Done</button>
                     </form>
-                    <div class="full_pipo_comment"> 
+                    <div class="full_pipo_comment"  > 
                        
-                        <p><?php saveComment();
-                        retrieveComments($post_id)?></p>
+                       <p id="comments" ></p>
+                        
                     </div>
                     
                     
@@ -172,7 +174,7 @@ if(!isset($_SESSION['id'])) {
             
            
 
-            <?php endif;?>
+           
 
             <div class="full_sidebar">
                 <?php
@@ -246,11 +248,73 @@ if(!isset($_SESSION['id'])) {
             
         
         </div>
+   
+        <script>
+    // Load comments when the page loads
+    $(document).ready(function () {
+      loadComments();
+    });
+
+
+
+ // Handle reaction button clicks dynamically
+ $(document).on('click', '.reaction-button', function () {
+      const postId = $(this).data('post-id');
+      const userId = $(this).data('user-id')
+      const reactionType = $(this).data('reaction-type');
+
+      $.post("save_reactions.php", {
+        post_id: postId,
+        user_id:userId,
+        reaction_type: reactionType
+      }, function () {
+        alert("Reaction saved!");
+      });
+    });
+
+
+
+
+
+
+
+
+
+    // Handle comment submission
+    $('#comment_btn').click(function () {
+      const postId = $('#post_id').val();
+      const userId = $('#user_id').val();
+      const commentText = $('#comment_text').val();
+
+      if (commentText) {
+        $.post("savecomment.php", {
+          post_id: postId,
+          user_id: userId,
+          comment_text: commentText
+        }, function (response) {
+          $('#comment_text').val('');
+              
+          loadComments(); // Reload comments after submission
+        });
+      } else {
+        alert("Please fill in all fields!");
+      }
+    });
+
+    // Function to load comments
+    function loadComments() {
+      const postId = $('#post_id').val();
+
+      $.get("displaycomment.php?post_id=" + postId, function (data) {
+        $('#comments').html(data);
+      });
+    }
+  </script>
        
-    
-        <?php 
+         <?php endif;?>
+    <?php 
         $conn->close();?>
-    
     </div>  
+    
 </body>
 </html>

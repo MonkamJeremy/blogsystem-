@@ -108,56 +108,19 @@ function updatepost(){
 }
 
 //function to handle comment on post
-function saveComment(){
-    if(isset($_POST['submit'])){
-        $post_id = $_POST['post_id'];
-        $user_id = $_POST['user_id'];
-        $comment_message = $_POST['comment'];
-        $created_at = date("Y-m-d H:i:s");
-        global $conn;
-
-      $sql = "INSERT INTO comments(post_id,user_id,comments_message,created_at)
-       VALUES('$post_id','$user_id','$comment_message','$created_at')";
-
-       if(mysqli_query($conn,$sql)){
-                
-        echo'comment sucessfully!';
-        }else{
-        echo'error uploading image!';
-        }
-    }
-    
-}
 
   
 
   // funtion to retrieve user comments
-  function retrieveComments($post_id){
-    global $conn;
-    $sql = "SELECT * FROM comments INNER JOIN posts_message ON comments.post_id = posts_message.post_id
-    INNER JOIN user_account ON comments.user_id = user_account.user_id WHERE posts_message.post_id = $post_id
-     ORDER BY created_at DESC  ";
-
-    $result = mysqli_query($conn,$sql);
-
-    if($result-> num_rows > 0){
-        while($row = $result->fetch_assoc()){
-        echo "<head>
-        <link rel='stylesheet' href='mainstyle.css'>
-        </head>
-        <div style ='display: flex;'>
-        <div class='comm_div_userprofile_photo'>
-           <img src ='uploaded_images/$row[user_profilephoto]' alt ='user_profilephoto' class='comm_div_userprofile_photo'>
-        </div>
-        <p style='padding-left:03px'>@$row[user_name]</p><br>
-        </div>";
-          
-         echo"<p style='padding-left:13px; padding-top:05px;'>... $row[comments_message]</p><br>";
-        }
-    }else{
-      echo "...No comment found";
-    }
-  }
+ 
+    
+     
+      
+   
+    
+   
+  
+ 
 
 
 

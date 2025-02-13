@@ -65,7 +65,7 @@ if(!isset($_SESSION['id'])) {
                     <?php
                         
                         if(isset($user_info['user_profilephoto'])){
-                            echo '<img src="uploaded_images/'. $user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
+                            echo '<img src="uploaded_images/'.$user_info['user_profilephoto']. '" alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';
                         }
                         else{
                         echo '<img src="uploaded_images/default_profile_img.png " alt="profile picture" style="margin: auto;" class="index_userprofile_photo">';

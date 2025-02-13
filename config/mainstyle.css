@@ -173,7 +173,7 @@ border-radius: 05px;
  
 }
 .index_div_content{
-    width: 310px;
+    width: 340px;
     height: 265px;
     float: left;
     border-radius: 10px;
@@ -187,7 +187,7 @@ border-radius: 05px;
     object-fit: cover;
 }
 .index_div_attachement{
-    width: 310px;
+    width: 340px;
     height: 160px;
     cursor: pointer;
     background-color: lightsalmon;
@@ -198,7 +198,7 @@ border-radius: 05px;
        border-radius:0px ;
 }
 .index_time_div{
-    margin-left: 80px;
+    margin-left: 110px;
 }
 .index_time{
     font-size: 12px;
@@ -256,11 +256,16 @@ border-radius: 05px;
     padding: 04px 0px 10px 04px ;
 }
 .div_react_btn{
-    margin-left: 50px;
+    margin-left: 95px;
+}
+.submit_reactions{
+    border: none;
+    background: transparent;
 }
 .react_btn{
     width: 19px;
     margin: 0px 9px;
+    cursor: pointer;
 }
  span{
     font-size: 14px;
@@ -308,6 +313,7 @@ border-radius: 05px;
 .index_search:focus{
     box-shadow: 01px 03px 3px 02px #e2e2e2;
     border:none;
+    background-color: #fff;
     outline:0px solid #5f9ea0 ;
     
 }
@@ -343,8 +349,7 @@ border-radius: 05px;
     padding: 10px 0px 40px 30px;    
 }
 .full_div_content{
-    width: 55%;   
-      
+    width: 55%;       
     text-wrap: wrap;    
 }
 .full_div_attachement{
