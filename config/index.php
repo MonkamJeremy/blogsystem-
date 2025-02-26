@@ -20,13 +20,17 @@ if(!isset($_SESSION['id'])) {
     <title>home page</title>
     
     <link rel="stylesheet" href="mainstyle.css">
-    <script src="index.js"></script>
-     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script src="index.js"></script>     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
 </head>
+
 <body>
     <div class="index_con">
+
+        <!-- haeder bar -->
         <div class="index_sticky_header">
             <header class="index_header">
 
@@ -74,9 +78,9 @@ if(!isset($_SESSION['id'])) {
                 </div>
             </header>
 
+            <!-- navigation bar-->
             <div class="index_div_create">
-            <div class="index_category">
-                    
+                <div class="index_category">                    
                     <ul>
                         <li class="index_cat_list"><a href="index.php?index=1" id="all" >All</a></li>
                         <li class="index_cat_list"><a href="tech.php?tech=1" >Technology</a></li>
@@ -89,40 +93,28 @@ if(!isset($_SESSION['id'])) {
                         <li class="index_cat_list"><a href="lifestyle.php?lifestyle=1" >Lifestyle</a></li>
 
                     </ul>
-                </div> 
-                
+                </div>                 
             </div>
         </div>
-    
-
-    
-        <?php
         
+        <!-- fetching and displing post from the database-->
+        <?php        
         $sql= "SELECT * FROM posts_message  INNER JOIN user_account 
         ON posts_message.user_id = user_account.user_id  ORDER BY post_id DESC LIMIT 21";
 
-/*$sql = "SELECT p.id, p.content, p.likes_count, 
-(SELECT COUNT(*) FROM likes WHERE user_id = $user_id AND post_id = p.id) as liked
-FROM posts p";
-$result = $conn->query($sql);
-
-$sql = "SELECT * FROM comments INNER JOIN posts_message ON comments.post_id = posts_message.post_id 
-INNER JOIN user_account ON comments.user_id = user_account.user_id 
-WHERE posts_message.post_id = ? ORDER BY created_at DESC";*/
-            
-            $result = $conn->query($sql);
-            if ($result-> num_rows > 0):?>
-        <div class="index_div_content_container">
-            
+        $result = $conn->query($sql);
+        if ($result-> num_rows > 0):?>
+        <div class="index_div_content_container">          
             
             <?php while($row = $result->fetch_assoc()):?>
             <div class="index_div_content">
                 <div class="index_div_attachement">
                     <form action="fullpost.php" method="get">
-                        <?php $post_id = $row['post_id']?>
+                        <?php $post_id = $row['post_id'];
+                        $user_id = $row['user_id']; ?>
                         <input type="hidden" id="post-id" name="post_id" value=" <?php echo $row['post_id']?>">
                         <button  name="submit" style="border:none;background:transparent;"> <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>" class="index_div_attachement" id="attach" >
-                       
+                      
                         </button>
                     </form>
                 
@@ -130,97 +122,153 @@ WHERE posts_message.post_id = ? ORDER BY created_at DESC";*/
 
                 <div style="display:flex;">
                         <div class="index_div_userprofile_photo">
+                        <a href="profile2.php?user_id=<?php echo $user_id ?>">
                         <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="index_div_userprofile_photo" >
+                        </a>
                         </div>
-                        <p class="index_username"><?php echo $row['user_name']?></p>
+                                       
+                        <a href="profile2.php?user_id=<?php echo $user_id ?>">  
+                           <p class="index_username"><?php echo $row['user_name']?></p>
+                        </a>
                         <div class="index_time_div">
                             <p class="index_time"><?Php $post_time = date(" g:i a  M d,Y ", strtotime($row["post_created_at"]));
                             echo  $post_time?></p>
                         </div>
-                </div>
-                
-
+                </div>             
 
                 <div style="padding:0px 08px;">
                     <h4 class="index_subject"><?php echo $row["post_subject"]?></h4>
-                    <div class="index_blog_message">
-                    <!--<p >Php// echo $row["post_message"]?>
-                    </p>-->
-                    <?php $post_id =$row['post_id']?>
-                    
+                    <div class="index_blog_message">                  
+                       <?php $post_id =$row['post_id']?>                    
                     </div>
-                    
-                    
-                        <div>
-                        <form class="div_button" >
+                                       
+                    <div class="div_button">
+                        <form>
                             <input type="hidden" id="post_id" name="post_id" value=" <?php echo $row['post_id']?>">
                             <button class="seepost" name="submit">                            
                                 <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" >
                                 <a>View post</a>  
                             </button>
-                            </form>
-                        </div> 
+                        </form>
+                        
+                        <!-- reactions --> 
                         <div class="div_react_btn">
                             <form >
-                            <?php $post_id= $row['post_id']?>
+                                <?php $post_id= $row['post_id']?>
+                                <!-- likes-button-->
                                 <button type="button" class="submit_reactions-likes" 
                                     data-post-id="<?php echo $post_id?>"
                                     data-user-id="<?php echo $user_info['user_id']?>"> 
                                     <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn" >
                                     <span id='like-count-<?php echo $post_id?>'> <?php echo $row['post_likes']?></span> 
-                                </button> 
-                                <input type="hidden" id="post-id" value="<?php echo $post_id?>">
-                                <button type="button"  class="submit_reactions-comment"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span id='comment-count-<?php echo $post_id?>' ><?php echo $row['post_comments']?></span></button>
-                                <button type="button"  class="submit_reactions-share"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span><?php echo $row['post_share']?></span></button> 
-                            </form>
-                         
-                        </div>
-                   
-                    
-                   
-                    
-                
-                </div>
-            
-                
-            
+                                </button>
 
+                                <!-- comments-button-->
+                                <input type="hidden" id="post-id" value="<?php echo $post_id?>">
+                                <button type="button"  class="submit_reactions-comment">
+                                     <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn">
+                                    <span id='comment-count-<?php echo $post_id?>' ><?php echo $row['post_comments']?></span>
+                                </button>
+
+                                <!-- shares-button-->  
+                                <button type="button"  class="submit_reactions-share" 
+                                    data-post-id="<?php echo $post_id?>"> 
+                                    <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn">
+                                    <span id='share-count-<?php echo $post_id?>'><?php echo $row['post_share']?></span>
+                                </button> 
+
+                                <div class="share-links" id="share-links-<?php echo $post_id?>" style="display: none;">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" class="facebook-share" data-platform="facebook" data-post-id="<?php echo $post_id?>" data-user-id="<?php echo $user_info['user_id']?>">
+                                    <i class="fa-brands fa-facebook"></i>
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" class="twitter-share" data-platform="twitter" data-post-id="<?php echo $post_id?>" data-user-id="<?php echo $user_info['user_id']?>">
+                                       <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                    <a href="https://api.whatsapp.com/send?text=YOUR_URL" target="_blank" class="whatsapp-share" data-platform="whatsapp" data-post-id="<?php echo $post_id?>" data-user-id="<?php echo $user_info['user_id']?>">
+                                       <i class="fa-brands fa-whatsapp"></i>
+                                    </a>                                                                        
+                                   
+                                </div>
+                            </form>                        
+                        </div>
+                    </div>                         
+                                                    
+                </div>                                      
             </div>
             <?php endwhile;?>
-
-                
-        
         </div>
-        <?php endif;?>
-        <?php // else{ echo"0 result";} ?>
-        
-      
+        <?php endif;?>      
     </div>
-    <script>
-    
-$(document).ready(function () {
-    
+
+<script>    
+$(document).ready(function () {    
    
+    // code for handling likes on posts
     $(".submit_reactions-likes").click(function() {
       var postId = this.getAttribute("data-post-id");
-      var userId = this.getAttribute("data-user-id");
-      
+      var userId = this.getAttribute("data-user-id");      
       
         $.get("likes.php", {               
              post_id: postId,
              user_id: userId
             }, 
-            function(response) {
-                
+            function(response) {                
                 const data = JSON.parse(response);
                 $("#like-count-" + postId).text(`${data.post_likes}`); 
       
             }          
         );       
     });
+
+
+    //code for handling shares on posts
+
+    
+    $(".submit_reactions-share").click(function () {
+        var postId = $(this).data("post-id");
+        $("#share-links-" + postId).fadeToggle(300); // Show/hide share links
+    });
+
+    $(".share-links a").click(function (e) {
+        e.preventDefault();
+
+        var platform = $(this).data("platform");
+        var postId = $(this).data("post-id");
+        var userId = $(this).data("user-id");
+
+        // Open social media share window
+        var url = "https://yourwebsite.com/post.php?id=" + postId;
+        if (platform === "facebook") {
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url), "_blank");
+        } else if (platform === "twitter") {
+            window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(url), "_blank");
+        } else if (platform === "whatsapp") {
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(url), "_blank");
+        }
+
+        // Update share count in the database using AJAX
+        $.ajax({
+            url: "update-share.php",
+            type: "POST",
+            data: { post_id: postId, user_id: userId },
+            dataType: "json",
+            success: function (data) {
+                $("#share-count-" + postId).text(data.post_share);
+            }
+        });
+    });
+
 });
 
-  
+
+
+
+
+
+
+
+
+
 
 
 </script>

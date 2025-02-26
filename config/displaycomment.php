@@ -1,6 +1,6 @@
 <?php
 require 'connet.php';
-require_once 'controller_1.php'; 
+require_once 'functtions.php';
 
 
 
@@ -19,9 +19,13 @@ while ($row = $result->fetch_assoc()) {
   </head>
   <div style ='display: flex;'>
   <div class='comm_div_userprofile_photo'>
+  <a href='profile2.php?user_id=<?php echo $user_id ?>'>
      <img src ='uploaded_images/$row[user_profilephoto]' alt ='user_profilephoto' class='comm_div_userprofile_photo'>
+     </a>
   </div>
+  <a href='profile2.php?user_id=<?php echo $user_id ?>'>
   <p style='padding-left:03px'>@$row[user_name]</p><br>
+  </a>
   </div>";
     
    echo"<p style='padding-left:13px; padding-top:05px;'>... $row[comment_text]</p><br>";

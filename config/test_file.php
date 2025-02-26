@@ -74,5 +74,27 @@
     }
   </script>
        
+
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!-- Facebook Share -->
+<a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank">
+    <i class="fa-brands fa-facebook"></i> Share on Facebook
+</a>
+
+<!-- Twitter Share -->
+<a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank">
+    <i class="fa-brands fa-twitter"></i> Share on Twitter
+</a>
+
+<!-- Instagram (No direct share link, use profile link) -->
+<a href="https://www.instagram.com/YOUR_PROFILE" target="_blank">
+    <i class="fa-brands fa-instagram"></i> Visit Instagram
+</a>
+
+<!-- WhatsApp Share -->
+<a href="https://api.whatsapp.com/send?text=YOUR_URL" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
+</a>
+
 </body>
 </html>

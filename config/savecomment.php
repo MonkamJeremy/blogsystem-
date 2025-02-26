@@ -31,59 +31,7 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-//}
-
-/*
-
-<?php
-// Include the database connection
-require 'db_connection.php'; // Make sure to include your database connection file
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Validate POST data
-    if (!isset($_POST['post_id'], $_POST['user_id'], $_POST['comment_text'])) {
-        die("Error: Missing required fields.");
-    }
-
-    $post_id = $_POST['post_id'];
-    $user_id = $_POST['user_id'];
-    $comment_text = trim($_POST['comment_text']); // Trim to remove unnecessary spaces
-    $created_at = date("Y-m-d H:i:s");
-
-    global $conn;
-    
-    // Check if the database connection exists
-    if (!$conn) {
-        die("Database connection error: " . mysqli_connect_error());
-    }
-
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("INSERT INTO comments (post_id, user_id, comments_message, created_at) VALUES (?, ?, ?, ?)");
-    
-    if (!$stmt) {
-        die("Error preparing statement: " . $conn->error);
-    }
-
-    // Bind parameters
-    $stmt->bind_param("iiss", $post_id, $user_id, $comment_text, $created_at);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        echo "Comment saved successfully!";
-        $stmt->close();
-        $conn->close();
-        header("Location: fullpost.php");
-        exit();
-    } else {
-        die("Error saving comment: " . $stmt->error);
-    }
-
-    // Close connections
-    $stmt->close();
-    $conn->close();
-}
 ?>
-
 
 
 

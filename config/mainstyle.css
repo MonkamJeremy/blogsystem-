@@ -253,10 +253,10 @@ border-radius: 05px;
 }
 .div_button{
     display: flex;
-    padding: 04px 0px 10px 04px ;
+    padding: 04px 0px 10px 0px ;
 }
 .div_react_btn{
-    margin-left: 95px;
+    margin-left: 90px;
 }
 .submit_reactions-likes {
     border: none;
@@ -279,6 +279,27 @@ border-radius: 05px;
     font-size: 14px;
     margin-left: -3px;
 }
+.share-links{
+    position: absolute;
+    top: 10;
+    left: 13;
+    z-index: 1;
+}
+.twitter-share,.whatsapp-share,.facebook-share{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: cadetblue; /* Facebook blue */
+    padding: 05px 7px 5px 07px;
+    border-radius: 25px;
+    margin: 3px 3px 3px 3px;
+   
+}
+
+.fa-brands {
+    margin-right: 0px;
+}
+
 .index_username{
     margin-top: 13px;
     font-size: 13px;

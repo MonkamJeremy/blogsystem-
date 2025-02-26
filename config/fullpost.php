@@ -123,15 +123,25 @@ if(!isset($_SESSION['id'])) {
 
                 <div style="display:flex;">
                         <div class="full_div_userprofile_photo">
-                        <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="full_div_userprofile_photo" >
+                        <a href="profile2.php?user_id=<?php echo $user_id ?>">
+                           <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="full_div_userprofile_photo" >
+                        </a>
                         </div>
+                        <a href="profile2.php?user_id=<?php echo $user_id ?>">
                         <p class="full_username"><?php echo $row['user_name']?></p>
+                        </a>
+                        
                         <div class="full_time_div">
                             <p class="full_time"><?Php $post_time = date("g:i a M j,Y ", strtotime($row["post_created_at"]));
                             echo  $post_time?></p>
                         </div>
                         <div class="full_reaction_btn">                        
-                            <button ><img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like-button"></button>                        
+                            <button type="button" class="submit_reactions-likes" 
+                                data-post-id="<?php echo $post_id?>"
+                                data-user-id="<?php echo $user_info['user_id']?>"> 
+                                <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn" >
+                                <span id='like-count-<?php echo $post_id?>'> <?php echo $row['post_likes']?></span> 
+                            </button>                        
                             <button><img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="share-button"> <span id="comment-count"></span> </button>
                         </div>
                 </div>
@@ -201,9 +211,14 @@ if(!isset($_SESSION['id'])) {
 
                     <div style="display:flex;">
                             <div class="index_div_userprofile_photo">
+                            <a href="profile2.php?user_id=<?php echo $user_id ?>">
                             <img src="uploaded_images/<?php  echo $row['user_profilephoto'];?> " alt="profile picture" style="margin: auto;" class="index_div_userprofile_photo" >
+                            </a>
                             </div>
+                            <a href="profile2.php?user_id=<?php echo $user_id ?>">
                             <p class="index_username"><?php echo $row['user_name']?></p>
+                            </a>
+                            
                             <div class="index_time_div">
                                 <p class="index_time"><?Php $post_time = date("g:i a M j,Y ", strtotime($row["post_created_at"]));
                                 echo  $post_time?></p>
@@ -214,24 +229,33 @@ if(!isset($_SESSION['id'])) {
 
                     <div style="padding:0px 08px;">
                         <h4 class="index_subject"><?php echo $row["post_subject"]?></h4>
-                        <div class="index_blog_message">
-                        <!--<p >Php// echo $row["post_message"]?>
-                        </p>-->
-                        <?php $post_id =$row['post_id']?>
-                        
+                        <div class="index_blog_message">                       
+                           <?php $post_id =$row['post_id']?>                        
                         </div>
-                        <form action="fullpost.php" method="get" class="div_button">
-                            <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">                        
-                            <button class="seepost" name="submit">                                
-                                <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" ><a>View post</a>  
+                        <div class="div_button">
+                        <form>
+                            <input type="hidden" id="post_id" name="post_id" value=" <?php echo $row['post_id']?>">
+                            <button class="seepost" name="submit">                            
+                                <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" >
+                                <a>View post</a>  
                             </button>
-                            <div class="div_react_btn">
-                                <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
-                                <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
-                                <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
-                            </div>
                         </form>
-                        
+
+                        <div class="div_react_btn">
+                            <form >
+                                <?php $post_id= $row['post_id']?>
+                                <button type="button" class="submit_reactions-likes" 
+                                    data-post-id="<?php echo $post_id?>"
+                                    data-user-id="<?php echo $user_info['user_id']?>"> 
+                                    <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn" >
+                                    <span id='like-count-<?php echo $post_id?>'> <?php echo $row['post_likes']?></span> 
+                                </button> 
+                                <input type="hidden" id="post-id" value="<?php echo $post_id?>">
+                                <button type="button"  class="submit_reactions-comment"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span id='comment-count-<?php echo $post_id?>' ><?php echo $row['post_comments']?></span></button>
+                                <button type="button"  class="submit_reactions-share"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span><?php echo $row['post_share']?></span></button> 
+                            </form>                        
+                        </div>
+                    </div>       
                     
                     </div>
                 </div>
@@ -253,6 +277,25 @@ if(!isset($_SESSION['id'])) {
     // Load comments when the page loads
     $(document).ready(function () {
       loadComments();
+
+
+
+      $(".submit_reactions-likes").click(function() {
+      var postId = this.getAttribute("data-post-id");
+      var userId = this.getAttribute("data-user-id");      
+      
+        $.get("likes.php", {               
+             post_id: postId,
+             user_id: userId
+            }, 
+            function(response) {
+                
+                const data = JSON.parse(response);
+                $("#like-count-" + postId).text(`${data.post_likes}`); 
+      
+            }          
+        );       
+    });
     });
 
  
@@ -287,14 +330,6 @@ if(!isset($_SESSION['id'])) {
       });
     }
 
-
-
-
-
- 
-
-
-
   function loadCommentCount() {
     const postId = $('#post_id').val();
     $.get("count_comment.php", { post_id: postId }, function (response) {
@@ -303,10 +338,10 @@ if(!isset($_SESSION['id'])) {
     });
   }
 
-  // Example post ID
-   // Change this dynamically
-  loadCommentCount();
+   loadCommentCount();
 
+
+ 
 
 
   </script>
