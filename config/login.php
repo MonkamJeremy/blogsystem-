@@ -31,11 +31,29 @@ require_once 'controller_1.php';
             <label>Email</label><br>
             <input type="text" name="email"  class="login_input" value="<?php echo $email;?>" ></input><br><br>
             <label>Pasword</label><br>
-            <input type="text" name="password" class="login_input"><br><br>
+            <div>
+                <input type="password" name="password" class="signup_inputs" id="password">
+                <img src="icons/visibility_off_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" id="eye-close" onclick="pass()" class="img-pswd1lgn">
+            </div><br>
             <li class="login_li"><a href="#">Forgot Password?</a></li>
             <button name="login" class="login_btn">Login</button>
             <p class="login_p">Don't yet have an account? <a href="signup.php"> Sign Up</a> </p>
         </div>
     </form>
+    <script>
+        var a;
+         function pass(){
+                  if(a == 1 ) {
+                    document.getElementById('password').type="password";
+                    document.getElementById('eye-close').src='icons/visibility_off_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png';
+                    a = 0;
+                  }
+                  else{
+                        document.getElementById('password').type="text";
+                    document.getElementById('eye-close').src='icons/visibility_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png';
+                    a =1;
+                  }
+            }
+    </script>
 </body>
 </html>

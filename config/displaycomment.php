@@ -24,7 +24,7 @@ while ($row = $result->fetch_assoc()) {
   <p style='padding-left:03px'>@$row[user_name]</p><br>
   </div>";
     
-   echo"<p style='padding-left:13px; padding-top:05px;'>... $row[comments_message]</p><br>";
+   echo"<p style='padding-left:13px; padding-top:05px;'>... $row[comment_text]</p><br>";
   
 }
 }else{

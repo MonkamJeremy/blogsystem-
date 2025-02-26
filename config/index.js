@@ -1,7 +1,87 @@
 
+$(document).ready(function () {
+   loadCommentCount();
+
+ 
+   
+      $(".submit_reactions").click(function() {
+        var postId = this.getAttribute("data-post-id");
+        var userId = this.getAttribute("data-user-id");
+        
+        
+          $.get("likes.php", {               
+               post_id: postId,
+               user_id: userId
+              }, function(response) {
+                 if (response.status === "liked") {
+                     $("#like-status").text("Liked!");
+                 } else {
+                     $("#like-status").text("Unliked!");
+                 }
+             }
+          );
+     
+        
+      });
+  
+  });
+  
+   
+
+ 
+ function loadCommentCount() {
+
+   const postId = $('#post-id').val();
+   
+   $.get("count_comment.php?post_id=" + postId , function (response) {
+     const data = JSON.parse(response);
+     $('#comment-count').text(`${data.total_comments}`);
+   });
+ }
 
 
- function handleclick(post_id){
+
+
+ /*$("#like-btn").click(function(){
+   var userId = $('#user-id').val();
+   var postId = $('#post-id').val();
+
+   $.ajax({
+       url: "like.php",
+       type: "POST",
+       data: { user_id,post_id: userId, postId },
+       dataType: "json",
+       success: function(response) {
+           var likeCountSpan = button.find("#like-count");
+
+           if (response.status === "liked") {
+               button.addClass("liked");
+               likeCountSpan.text(parseInt(likeCountSpan.text()) + 1);
+           } else {
+               button.removeClass("liked");
+               likeCountSpan.text(parseInt(likeCountSpan.text()) - 1);
+           }
+       }
+   });
+});
+*/
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+/* function handleclick(post_id){
     window.location.href = "fullpost.php?=" + post_id;
    
  }
@@ -69,7 +149,7 @@ document.getElementById('comment_btn').addEventListener('click', function(){
        document.getElementById('comment-button').addEventListener('click', function() { var post_id =document.getElementById('post-id').value;
         displayComments(post_id);});
        
-//
+*/
 
 
 
@@ -78,3 +158,45 @@ document.getElementById('comment_btn').addEventListener('click', function(){
 
 
 
+
+   
+
+
+
+   /* Handle reaction button clicks dynamically
+   $(document).on('click', '#reaction-button', function () {
+        const postId = $(this).data('post-id');
+        const userId = $(this).data('user-id');
+        const reactionType = $(this).data('#reaction-type');
+  
+        $.post("save_reactions.php", {
+          post_id: postId,
+          user_id:userId,
+          reaction_type: reactionType
+        }, function () {
+          alert("Reaction saved!");
+          loadReactions();
+        });
+      });
+  
+  
+      function loadReactions() {
+          const postId = $('#post-id').val();
+      $.get("retrieve_reactions.php", { post_id: postId }, function (response) {
+        const data = JSON.parse(response);
+        $('#reaction-container').html(`
+          <p>👍 Likes: ${data.likes} | 👎 Dislikes: ${data.dislikes}</p>
+        `);
+      });
+    }
+  
+    // Load reactions for a specific post
+    // Example post ID*/
+  
+   
+  
+   
+    // Example post ID
+    //const postId = 18; // Change this dynamically
+    
+  

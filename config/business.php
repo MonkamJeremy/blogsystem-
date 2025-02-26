@@ -18,11 +18,7 @@ if(!isset($_SESSION['id'])) {
     <link rel="icon" type="image/png" href="icons/favicon.png">
     <title>business page</title>
     <link rel="stylesheet" href="mainstyle.css">
-    
-    <style>
-      
-       
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="index_con">
@@ -139,12 +135,21 @@ if(!isset($_SESSION['id'])) {
                     <?php $post_id =$row['post_id']?>
                     
                     </div>
-                    <form action="fullpost.php" method="get">
-                    <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
-                        <button class="seepost" name="submit">
-                            
-                            <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" style="width:15px">View post
-                        </button>
+                    <form class="div_button" >
+                        <div>
+                            <input type="hidden" id="post_id" name="post_id" value=" <?php echo $row['post_id']?>">
+                            <button class="seepost" name="submit">                            
+                                <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" >
+                                <a>View post</a>  
+                            </button>
+                        </div> 
+                        <div class="div_react_btn">
+                          <input type="hidden" id="post-id" name="post_id" value=" <?php echo $row['post_id']?>">
+                          <input type="hidden" name="" id="user-id" value="<?php echo $user_info['user_id']?>">
+                          <button type="button" class="submit_reactions" id="reaction-button"> <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn"><span>0</span></button> 
+                           <button type="button"  class="submit_reactions"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span id="comment-count" ></span></button>
+                          <button type="button"  class="submit_reactions"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span></button> 
+                        </div>
                     </form>
                     
                 

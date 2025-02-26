@@ -131,8 +131,8 @@ if(!isset($_SESSION['id'])) {
                             echo  $post_time?></p>
                         </div>
                         <div class="full_reaction_btn">                        
-                            <button><img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like-button">0</button>                        
-                            <button><img src="icons/share.png" alt="share-button">  0</button>
+                            <button ><img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like-button"></button>                        
+                            <button><img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="share-button"> <span id="comment-count"></span> </button>
                         </div>
                 </div>
                 
@@ -226,9 +226,9 @@ if(!isset($_SESSION['id'])) {
                                 <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" ><a>View post</a>  
                             </button>
                             <div class="div_react_btn">
-                                <img src="icons/favorite_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
-                                <img src="icons/comment2.png" alt="" class="react_btn"><span>0</span>
-                                <img src="icons/share.png" alt="" class="react_btn"><span>0</span>
+                                <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
+                                <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
+                                <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span>
                             </div>
                         </form>
                         
@@ -255,37 +255,14 @@ if(!isset($_SESSION['id'])) {
       loadComments();
     });
 
-
-
- // Handle reaction button clicks dynamically
- $(document).on('click', '.reaction-button', function () {
-      const postId = $(this).data('post-id');
-      const userId = $(this).data('user-id')
-      const reactionType = $(this).data('reaction-type');
-
-      $.post("save_reactions.php", {
-        post_id: postId,
-        user_id:userId,
-        reaction_type: reactionType
-      }, function () {
-        alert("Reaction saved!");
-      });
-    });
-
-
-
-
-
-
-
-
+ 
 
     // Handle comment submission
     $('#comment_btn').click(function () {
       const postId = $('#post_id').val();
       const userId = $('#user_id').val();
       const commentText = $('#comment_text').val();
-
+      
       if (commentText) {
         $.post("savecomment.php", {
           post_id: postId,
@@ -309,6 +286,29 @@ if(!isset($_SESSION['id'])) {
         $('#comments').html(data);
       });
     }
+
+
+
+
+
+ 
+
+
+
+  function loadCommentCount() {
+    const postId = $('#post_id').val();
+    $.get("count_comment.php", { post_id: postId }, function (response) {
+      const data = JSON.parse(response);
+      $('#comment-count').text(`${data.total_comments}`);
+    });
+  }
+
+  // Example post ID
+   // Change this dynamically
+  loadCommentCount();
+
+
+
   </script>
        
          <?php endif;?>

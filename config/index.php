@@ -20,6 +20,7 @@ if(!isset($_SESSION['id'])) {
     <title>home page</title>
     
     <link rel="stylesheet" href="mainstyle.css">
+    <script src="index.js"></script>
      
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
@@ -99,6 +100,15 @@ if(!isset($_SESSION['id'])) {
         
         $sql= "SELECT * FROM posts_message  INNER JOIN user_account 
         ON posts_message.user_id = user_account.user_id  ORDER BY post_id DESC LIMIT 21";
+
+/*$sql = "SELECT p.id, p.content, p.likes_count, 
+(SELECT COUNT(*) FROM likes WHERE user_id = $user_id AND post_id = p.id) as liked
+FROM posts p";
+$result = $conn->query($sql);
+
+$sql = "SELECT * FROM comments INNER JOIN posts_message ON comments.post_id = posts_message.post_id 
+INNER JOIN user_account ON comments.user_id = user_account.user_id 
+WHERE posts_message.post_id = ? ORDER BY created_at DESC";*/
             
             $result = $conn->query($sql);
             if ($result-> num_rows > 0):?>
@@ -109,10 +119,11 @@ if(!isset($_SESSION['id'])) {
             <div class="index_div_content">
                 <div class="index_div_attachement">
                     <form action="fullpost.php" method="get">
-                    <?php $post_id = $row['post_id']?>
-                <button  name="submit" style="border:none;background:transparent;"> <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>" class="index_div_attachement" id="attach" onclick=" handleclick($post_id)">
-                <input type="hidden" name="post_id" value=" <?php echo $row['post_id']?>">
-                </button>
+                        <?php $post_id = $row['post_id']?>
+                        <input type="hidden" id="post-id" name="post_id" value=" <?php echo $row['post_id']?>">
+                        <button  name="submit" style="border:none;background:transparent;"> <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>" class="index_div_attachement" id="attach" >
+                       
+                        </button>
                     </form>
                 
                 </div>
@@ -139,22 +150,32 @@ if(!isset($_SESSION['id'])) {
                     
                     </div>
                     
-                    <form class="div_button" >
+                    
                         <div>
+                        <form class="div_button" >
                             <input type="hidden" id="post_id" name="post_id" value=" <?php echo $row['post_id']?>">
                             <button class="seepost" name="submit">                            
                                 <img src="icons/fullscreen_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" >
                                 <a>View post</a>  
                             </button>
+                            </form>
                         </div> 
                         <div class="div_react_btn">
-                          <input type="hidden" id="post-id" name="post_id" value=" <?php echo $row['post_id']?>">
-                          <input type="hidden" name="" id="user-id" value="<?php echo $user_info['user_id']?>">
-                          <button type="submit" class="submit_reactions" id="reaction-button"> <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn"><span>0</span></button> 
-                           <button type="submit"  class="submit_reactions"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span></button>
-                          <button type="submit"  class="submit_reactions"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span>0</span></button> 
+                            <form >
+                            <?php $post_id= $row['post_id']?>
+                                <button type="button" class="submit_reactions-likes" 
+                                    data-post-id="<?php echo $post_id?>"
+                                    data-user-id="<?php echo $user_info['user_id']?>"> 
+                                    <img src="icons/heart_plus_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="like" class="react_btn" >
+                                    <span id='like-count-<?php echo $post_id?>'> <?php echo $row['post_likes']?></span> 
+                                </button> 
+                                <input type="hidden" id="post-id" value="<?php echo $post_id?>">
+                                <button type="button"  class="submit_reactions-comment"> <img src="icons/comment_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span id='comment-count-<?php echo $post_id?>' ><?php echo $row['post_comments']?></span></button>
+                                <button type="button"  class="submit_reactions-share"> <img src="icons/share_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" class="react_btn"><span><?php echo $row['post_share']?></span></button> 
+                            </form>
+                         
                         </div>
-                    </form>
+                   
                     
                    
                     
@@ -175,41 +196,34 @@ if(!isset($_SESSION['id'])) {
         
       
     </div>
-  <script>
+    <script>
+    
+$(document).ready(function () {
+    
    
-
-
-
- // Handle reaction button clicks dynamically
- $(document).on('click', '#reaction-button', function () {
-      const postId = $(this).data('post-id');
-      const userId = $(this).data('user-id')
-      const reactionType = $(this).data('reaction-type');
-
-      $.post("save_reactions.php", {
-        post_id: postId,
-        user_id:userId,
-        reaction_type: reactionType
-      }, function () {
-        alert("Reaction saved!");
-        loadReactions();
-      });
+    $(".submit_reactions-likes").click(function() {
+      var postId = this.getAttribute("data-post-id");
+      var userId = this.getAttribute("data-user-id");
+      
+      
+        $.get("likes.php", {               
+             post_id: postId,
+             user_id: userId
+            }, 
+            function(response) {
+                
+                const data = JSON.parse(response);
+                $("#like-count-" + postId).text(`${data.post_likes}`); 
+      
+            }          
+        );       
     });
+});
+
+  
 
 
-    function loadReactions() {
-        const postId = $('#post_id').val();
-    $.get("retrieve_reactions.php", { post_id: postId }, function (response) {
-      const data = JSON.parse(response);
-      $('#reaction-container').html(`
-        <p>👍 Likes: ${data.likes} | 👎 Dislikes: ${data.dislikes}</p>
-      `);
-    });
-  }
-
-  // Load reactions for a specific post
-  // Example post ID
-
-  </script>
+</script>
+  
 </body>
 </html>
