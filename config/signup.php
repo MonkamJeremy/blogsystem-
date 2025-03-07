@@ -12,7 +12,7 @@ require_once 'controller_1.php';
     <title>Sign up</title>
     <link rel="stylesheet" href="controller.css">
 </head>
-<body>
+<body  style="background-color: #f4f4f4;">
     <h2 class="signup_h2">BlogZone</h2>
     <form method="post" action="signup.php" class="signup_form">
         <div class="signup_legend_div">

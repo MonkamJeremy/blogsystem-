@@ -13,6 +13,6 @@ if (isset($_GET['post_id'])) {
     echo json_encode(['total_comments' => $result['total_comments'] ?: 0]);
 
     $stmt->close();
+    $conn->close();
 }
-$conn->close();
-?>
+

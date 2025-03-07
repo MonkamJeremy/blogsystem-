@@ -11,11 +11,12 @@ body{
     border: 1px solid #181010;
 }
 /*  admin page styling start*/
+
 .admin_container_div{
     width: 99.8%;
     display: flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 149px;
+    margin-top: 49px;
 }
 .admin_header{
     background-color:#f4f4f4;
@@ -309,178 +310,7 @@ li{
 
 /*end of signup page styling*/
 
-/*start of profile page styling*/
-@font-face {
-    font-family: Poppins;
-    src: url(fonts/Roboto-Bold.ttf);
 }
-.profile_header{
-    background-color: #fff; 
-    padding: 05px 15px 05px 15px;
-    display: flex;
-    justify-content: space-between;     
-}
-.profile_h1 a{
-    font-size: 27px;
-    padding: 16px  0px 03px 15px;
-    color: cadetblue;
-}
-.profile_h2{
-    color: cadetblue;
-    padding-top: 50px;
-    font-family: 'Poppins',sans-serif;
-}
-.profile_li{
-    list-style: none;  
-}
-.profile_li a{
-    text-decoration: none;
-    cursor: pointer;
-    
-}
-.profile_li a:hover{
-    color: #f4f4f4;
-}
-.profile_logout_div{
-    width: 70px;
-    height: 20px;
-    border-radius: 10px;
-    border: 1px solid cadetblue ;
-    text-align: center;
-    padding: 10px 05px;
-}
-.profile_logout_div:hover{
-    border: 1px solid #f4f4f4;
-    background-color: cadetblue;
-   
-}
-
-#profile_create_post{
-    margin-right: 10px;
-}
-
-.profile_div_create{
-    display: flex;
-    padding: 02px 0px;
-}
-.profile_div_btn{
-    display: flex;
-    padding: 23px 40px 0px 0px;
-}
-
-.profile_div_container{
-    display: flex;
-    background-color: #f4f4f4;
-    margin-top: 150px;
-
-}
-.profile_conttent_container{
-    width: 95%; 
-    max-height: 400px;
-    overflow-x: auto;
-    margin: 20px 20px 0px 20px;
-    padding: 30px 0px 0px 0px;
-    background-color: #fff;
-    border-radius: 05px;
-    
-}
-.profile_div_content{
-    
-    margin: 15px 70px 15px 100px;
-    
-}
-.profile_div_attachement{
-    width: 420.5px;
-    height: 198.75px;
-    background-color:lightsalmon;
-    border-radius: 05px;
-    
-    
-    
-}
-.profile_div_attachement img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 05px;     
-}
-.profile_div_attachement img:hover{
-    border-radius: 0px;
-}
-.profile_time{
-    padding: 13px 10px 10px 20px;
-}
-.profile_subject{
-    padding: 06px 10px 10px 10px;
-    font-size: 19px;
-}
-.profile_blog_message{
-    padding: 0px 60px 35px 10px ;
-}
-
-.profile_reaction{
-    display: flex;    
-    min-height: 40px;
-    justify-content: space-between;
-    
-}
-.profile_reaction_btn {
-    width: 100px;
-    color: #f4f4f4;
-    margin: 15px 100px 15px 15px;
-    padding: 9px 10px 9px 10px;
-    border-radius: 6px;
-    border:none;
-    cursor: pointer;
-    font-size: 14px;
-    text-transform: capitalize;
-    background-color: cadetblue;
-}
-.profile_reaction_btn a{
-    color: #f4f4f4;
-}
-.profile_username{
-    margin-top: 30px;
-    font-size: 17px;
-}
-.profile_div_sidebar{
-    width: 35%;
-    height: 420px;
-    padding-top: 20px;
-    margin: 20px 0px 0px 20px;
-    background-color: #fff;
-    color:  cadetblue;
-    border-radius: 10px;
-}
-.profile_userprofile_photo{
-    width: 90px;
-    height: 90px;
-    margin-left: 30%;
-    border-radius:50px; 
-    background-color: #fff;
-}
-
-#profile_username{
-    padding: 0px 03px 02px 10px;
-}
-.profile_userdetails{
-    margin: 15px 0px 0px 17% ;
-}
-.profile_list{
-    padding-top: 10px;
-    font-size: 17px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
-}
-.profile_update{
-    width: 300px;
-}
-.input{
-    width: 190px; padding: 3px;
-}
-
-}
-
 
 
 @media screen and (max-width:400px) {
@@ -500,15 +330,15 @@ body{
     width: 99.8%;
     display: flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top:70px;
+    margin-top:0px;
 }
 
 
 
 .admin_form{
     background-color: #fff;
-    width: 64%;
-    margin:04px 0px  10px 04px;
+    width: 54%;
+    margin:04px 0px  10px 200px;
     border-radius: 5px;
     
 }
@@ -542,14 +372,7 @@ textarea:focus{
  padding-top: 10px;
  border-radius: 5px;
 }
-.admin_sidebar_div{
-    width: 30%;
-    height:373px;
-    margin:04px 0px 0px 04px;
-    padding: 09px 0px 0px 06px;
-    background-color:#f4f4f4;
-    border-radius: 10px;  
-}
+
 .admin_label{
     font-size: 9px;
     color: cadetblue;
@@ -569,17 +392,7 @@ textarea:focus{
     color: cadetblue;
 }
 
-#admin_new_post:hover,#admin_recent_post:hover,#admin_edit_post:hover{
-  width:90%;
-  cursor: pointer;
-  color: #f4f4f4;
-  background-color: lightsalmon;
-  border: none;
-}
-#admin_new_post,#admin_recent_post,#admin_edit_post{
-    background-color: #f4f4f4;
-    color: #023030; border: #a0a2a2 1px solid;
-}
+
 .admin_opion:hover{
     background-color: #023030;
 }
@@ -603,7 +416,7 @@ textarea:focus{
 
 /*  login page styling start*/
 body{
-    background-color:#dfdddd;
+    background-color:#f4f4f4;
     
 }
 .login_form{
@@ -824,7 +637,7 @@ li{
 .profile_div_container{
     display: flex;
     background-color: #f4f4f4;
-    margin-top: 56px;
+    margin-top: 0px;
 
 }
 .profile_conttent_container{

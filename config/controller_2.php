@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
     $image_tmp_name = $image['tmp_name'];
 
     //allowed types for attachment
-   // $allowed_types = array('image/jpg','image/png','image/gif');
+    $allowed_types = array('image/jpg','image/png','image/gif');
 
  //checking validation on input fills
    

@@ -13,7 +13,7 @@ require_once 'controller_1.php';
     <title>Login</title>
     <link rel="stylesheet" href="controller.css">
 </head>
-<body>
+<body style="background-color: #f4f4f4;">
      <h2 class="login_h2">BlogZone</h2>
     <form method="post" action="login.php" class="login_form">
         <div class="login_legend_div">
@@ -29,7 +29,7 @@ require_once 'controller_1.php';
          
         <div class="login_form_div">
             <label>Email</label><br>
-            <input type="text" name="email"  class="login_input" value="<?php echo $email;?>" ></input><br><br>
+            <input type="text" name="email"  class="signup_inputs" value="<?php echo $email;?>" ></input><br><br>
             <label>Pasword</label><br>
             <div>
                 <input type="password" name="password" class="signup_inputs" id="password">

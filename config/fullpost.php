@@ -116,7 +116,8 @@ if(!isset($_SESSION['id'])) {
             <?php $row = $result->fetch_assoc()?>
             <div class="full_div_content">
                 <div class="full_div_attachement">
-                    <?php $post_id = $row['post_id']?>
+                    <?php $post_id = $row['post_id'];
+                    $user_id = $row['user_id']?>
                     <img src="uploaded_images/<?Php echo  $row['post_img'];?> " alt="<?Php echo $row['post_img']?>" class="full_div_attachement" id="attach" onclick=" handleclick($post_id)">
                     
                 </div>
@@ -174,7 +175,7 @@ if(!isset($_SESSION['id'])) {
                     </form>
                     <div class="full_pipo_comment"  > 
                        
-                       <p id="comments" ></p>
+                       <p id="comments-<?php echo $row['post_id']?>" ></p>
                         
                     </div>
                     
@@ -273,7 +274,7 @@ if(!isset($_SESSION['id'])) {
         
         </div>
    
-        <script>
+    <script>
     // Load comments when the page loads
     $(document).ready(function () {
       loadComments();
@@ -326,7 +327,7 @@ if(!isset($_SESSION['id'])) {
       const postId = $('#post_id').val();
 
       $.get("displaycomment.php?post_id=" + postId, function (data) {
-        $('#comments').html(data);
+        $('#comments-'+postId).html(data);
       });
     }
 
@@ -344,7 +345,7 @@ if(!isset($_SESSION['id'])) {
  
 
 
-  </script>
+    </script>
        
          <?php endif;?>
     <?php 

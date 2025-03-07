@@ -1,5 +1,93 @@
 
-$(document).ready(function () {
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+$(document).ready(function () {  
+    
+  $('.toggle-nav').click(function(){
+      $('#nav-bar').Toggle(250)
+  });
+ 
+  // code for handling likes on posts
+  $(".submit_reactions-likes").click(function() {
+    var postId = this.getAttribute("data-post-id");
+    var userId = this.getAttribute("data-user-id");      
+    
+      $.get("likes.php", {               
+           post_id: postId,
+           user_id: userId
+          }, 
+          function(response) {                
+              const data = JSON.parse(response);
+              $("#like-count-" + postId).text(`${data.post_likes}`); 
+    
+          }          
+      );       
+  });
+
+
+  //code for handling shares on posts
+
+  
+  $(".submit_reactions-share").click(function () {
+      var postId = $(this).data("post-id");
+      $("#share-links-" + postId).fadeToggle(300); // Show/hide share links
+  });
+
+  $(".share-links a").click(function (e) {
+      e.preventDefault();
+
+      var platform = $(this).data("platform");
+      var postId = $(this).data("post-id");
+      var userId = $(this).data("user-id");
+
+      // Open social media share window
+      var url = "https://yourwebsite.com/post.php?id=" + postId;
+      if (platform === "facebook") {
+          window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url), "_blank");
+      } else if (platform === "twitter") {
+          window.open("https://twitter.com/intent/tweet?url=" + encodeURIComponent(url), "_blank");
+      } else if (platform === "whatsapp") {
+          window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(url), "_blank");
+      }
+
+      // Update share count in the database using AJAX
+      $.ajax({
+          url: "update-share.php",
+          type: "POST",
+          data: { post_id: postId, user_id: userId },
+          dataType: "json",
+          success: function (data) {
+              $("#share-count-" + postId).text(data.post_share);
+          }
+      });
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*$(document).ready(function () {
    loadCommentCount();
 
  
