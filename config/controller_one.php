@@ -2,7 +2,7 @@
 //initialling
 session_start();
 require_once 'connet.php';
-$errors=array();
+$errors= [];
 $name="";
 $email="";
 $password="";

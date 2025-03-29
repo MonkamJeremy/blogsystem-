@@ -38,7 +38,7 @@ require_once 'controller_1.php';
 
    if(in_array($image_type,$allowed)){
     $new_image_name = uniqid().'.'. pathinfo($image_name_profilephoto, PATHINFO_EXTENSION);
-    $image_upload_path = 'uploaded_images/'.$new_image_name;
+    $image_upload_path = "uploaded_images/$new_image_name";
 
     move_uploaded_file($image_tmp_name, $image_upload_path);
 
@@ -107,69 +107,13 @@ function updatepost(){
    
 }
 
-//function to handle comment on post
+
 
   
 
-  // funtion to retrieve user comments
- 
-    
-     
-      
-   
-    
-   
-  
  
 
 
-
- /* function like_post($post_id, $user_id) {
-    global $conn;
-    $sql = "INSERT INTO likes (post_id, user_id) VALUES ('$post_id', '$user_id')";
-    if ($conn->query($sql) === TRUE) {
-      echo "Post liked successfully!";
-    } else {
-      echo "Error liking post: " . $conn->error;
-    }
-  }
-  
-  // Function to unlike a post
-  function unlike_post($post_id, $user_id) {
-    global $conn;
-    $sql = "DELETE FROM likes WHERE post_id = '$post_id' AND user_id = '$user_id'";
-    if ($conn->query($sql) === TRUE) {
-      echo "Post unliked successfully!";
-    } else {
-      echo "Error unliking post: " . $conn->error;
-    }
-  }
-  
-  // Function to check if a user has liked a post
-  function has_liked_post($post_id, $user_id) {
-    global $conn;
-    $sql = "SELECT * FROM likes WHERE post_id = '$post_id' AND user_id = '$user_id'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  
-  // Example usage
-  $post_id = 1; // Replace with the actual post ID
-  $user_id = 1; // Replace with the actual user ID
-  
-  if (has_liked_post($post_id, $user_id)) {
-    unlike_post($post_id, $user_id);
-  } else {
-    like_post($post_id, $user_id);
-  }
- */
-
-
    
 
     
-?>

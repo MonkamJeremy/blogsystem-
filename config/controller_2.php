@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
 
          
         $new_image_name = uniqid().'.'. pathinfo($image_name, PATHINFO_EXTENSION);
-        $image_upload_path = 'uploaded_images/'.$new_image_name;
+        $image_upload_path = "uploaded_images/$new_image_name";
     
         move_uploaded_file($image_tmp_name, $image_upload_path);
     
@@ -77,27 +77,6 @@ if(isset($_POST['submit'])){
 mysqli_close($conn)
 
 
-//redirecting the user back to the index page
-/*
-
-        $stmt = $conn->prepare(($query));
-        $stmt->bind_param("ssss",$subject, $image_name,$category, $message);
-    
-        if($stmt->execute()){
-            echo "data inserted";
-        }
-    
-        else{
-            echo"data not inserted";
-        }
-
-
-
-
-if(isset($_POST['submit'])) {
-    header('location:index.php');
-    exit();
-} */
 
 
 ?>

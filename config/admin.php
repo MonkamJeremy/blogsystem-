@@ -309,53 +309,7 @@ textarea:focus{
 },2000);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         /*
-    $(document).on("submit", ".admin_form",function (e) {
-      e.preventDefault();
-      var form = $(this);
-      var postSubject = form.find("input[name='subject']").val();
-      var postImage = form.find("input[name='image']")[0].files[0];  
-      var postCategory = form.find("select").val();         
-      var postMessage = form.find("textarea").val();
-      var loadingMessage = form.find(".loading-message");
-      
-     
-    if (postImage) {
-        loadingMessage.show();        
-        setTimeout(function () {
-            $.post("upload.php", {
-                post_subject: postSubject,
-                post_image: postImage,
-                post_category: postCategory,
-                post_message:postMessage
-            }, function (response) {
-                loadingMessage.hide();                                
-                form.find("input[name='subject']").val("");
-                form.find("input[name='image']").val("");                    
-                form.find("textarea").val("");
-                window.location.href = "index.php";// Load PHP content dynamically                                    
-                
-            });
-        },3000);
-    } else {
-        loadingMessage.hide();
-        alert("Please fill in all fields!");
-      }
- });*/
+ 
 </script>
 </body>
 </html>

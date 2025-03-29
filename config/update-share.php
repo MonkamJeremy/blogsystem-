@@ -19,4 +19,3 @@ echo json_encode(["post_share" => $count_row['post_share']]);
 
 $conn->close();
 }
-?>

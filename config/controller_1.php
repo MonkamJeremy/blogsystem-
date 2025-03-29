@@ -2,7 +2,7 @@
 //initialling
 session_start();
 require_once 'connet.php';
-$errors=array();
+$errors= [];
 $name="";
 $email="";
 $password="";
@@ -39,7 +39,7 @@ if(isset($_POST['Signup'])){
 
     //checking if emial already exit in the database
     $emailquery="SELECT * FROM user_account WHERE user_email=? LIMIT 1";
-    $stmt = $conn->prepare(($emailquery));
+    $stmt = $conn->prepare($emailquery);
     $stmt->bind_param('s',$email);
     $stmt->execute();
     $result =$stmt->get_result();
@@ -57,7 +57,7 @@ if(isset($_POST['Signup'])){
        
       
         $sql="INSERT INTO user_account(user_name,user_email,user_password) VALUES(?,?,?)";
-        $stmt=$conn->prepare(($sql));
+        $stmt=$conn->prepare($sql);
         $stmt->bind_param("sss",$name, $email, $hashpassword);
 
        if($stmt->execute()) {
@@ -100,7 +100,7 @@ if(isset($_POST['login'])){
     }
     if(count($errors)=== 0){
         $sql = "SELECT * FROM user_account WHERE user_email = ? LIMIT 1";
-        $stmt = $conn->prepare(($sql));
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param('s',$email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -136,4 +136,3 @@ if(isset($_GET['logout'])){
     exit();
 
 }
-?> 

@@ -2,7 +2,7 @@
 require 'connet.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
- // Assume user is logged in
+ 
 $post_id = $_GET['post_id'];
 $user_id = $_GET['user_id'];
 
@@ -17,8 +17,7 @@ if ($result->num_rows > 0) {
     $count_row = $count_result->fetch_assoc();
     $status = "unliked";
     echo json_encode(["post_likes" => $count_row['post_likes'], "status" => $status] );
-   // $conn->query("UPDATE posts_message SET post_likes = GREATEST(post_likes - 1, 0) WHERE post_id = $post_id");
-
+  
     
 } else {
     // Like the post
@@ -39,4 +38,3 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 }
-?>

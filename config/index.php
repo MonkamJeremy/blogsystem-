@@ -86,47 +86,47 @@ if(!isset($_SESSION['id'])) {
                         <div style="display: flex;">                       
                             <ul class="icons">
                                 <li>
-                                    <a href="index.php">
+                                    <a href="index.php" class="linked">
                                         <img src="icons/home_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px" id="all-icons">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="tech.php?tech=1">
+                                    <a href="tech.php" class="linked">
                                         <img src="icons/brand_awareness_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a> 
                                 </li>                                
                                 <li>
-                                    <a href="sport.php?sport=2">
+                                    <a href="sport.php" class="linked">
                                         <img src="icons/add_diamond_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="entertainment.php?entertainment=3">
+                                    <a href="entertainment.php" class="linked">
                                         <img src="icons/music_note_add_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="politics.php?politics=4">
+                                    <a href="politics.php" class="linked">
                                         <img src="icons/conditions_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="fashion.php?fashion=5">
+                                    <a href="fashion.php" class="linked">
                                         <img src="icons/hotel_class_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="business.php?business=6">
+                                    <a href="business.php" class="linked">
                                         <img src="icons/business_center_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="health.php?health=7">
+                                    <a href="health.php" class="linked">
                                         <img src="icons/pacemaker_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="lifestyle.php?lifestyle=8">
+                                    <a href="lifestyle.php" class="linked">
                                         <img src="icons/lift_to_talk_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="" width="25px">
                                     </a>
                                 </li>
@@ -136,55 +136,55 @@ if(!isset($_SESSION['id'])) {
                             <ul id="nav-bar">
                                 <div  class="index_cat_list" id="active">
                                     <li >                                
-                                        <a href="index.php?index=1">All</a>
+                                        <a href="index.php" class="linked">All</a>
                                     </li>
                                 </div>
                                 
                                 <div class="index_cat_list">
                                     <li>                               
-                                        <a href="tech.php?tech=1" >Technology</a>
+                                        <a href="tech.php" class="linked">Technology</a>
                                     </li>
                                 </div>
                                 
                                 <div class="index_cat_list">
                                     <li>                                
-                                        <a href="sport.php?sport=1" >Sports</a>
+                                        <a href="sport.php" class="linked">Sports</a>
                                     </li>
                                 </div>
                                 
                                 <div class="index_cat_list">
                                     <li>                               
-                                        <a href="entertainment.php?entertainment=1" >Entertainment</a>
+                                        <a href="entertainment.php" class="linked">Entertainment</a>
                                     </li>
                                 </div>
                                
                                 <div class="index_cat_list">
                                     <li>                             
-                                        <a href="politics.php?politics=1" >Politics</a>
-                                    </li>
-                                </div>
-                                
-                                <div class="index_cat_list">
-                                    <li>                               
-                                        <a href="fashion.php?fashion=1" >Fashion</a>
-                                    </li>
-                                </div>
-                               
-                                <div class="index_cat_list">
-                                    <li>                              
-                                        <a href="business.php?business=1" >Business</a>
+                                        <a href="politics.php" class="linked">Politics</a>
                                     </li>
                                 </div>
                                 
                                 <div class="index_cat_list">
                                     <li>                                
-                                        <a href="health.php?health=1" >Health</a>
+                                        <a href="fashion.php" class="linked">Fashion</a>
+                                    </li>
+                                </div>
+                               
+                                <div class="index_cat_list">
+                                    <li>                              
+                                        <a href="business.php" class="linked">Business</a>
+                                    </li>
+                                </div>
+                                
+                                <div class="index_cat_list">
+                                    <li>                                
+                                        <a href="health.php" class="linked">Health</a>
                                     </li>
                                 </div>
                                
                                 <div class="index_cat_list">
                                     <li>                               
-                                        <a href="lifestyle.php?lifestyle=1" >Lifestyle</a>
+                                        <a href="lifestyle.php" class="linked">Lifestyle</a>
                                     </li>
                                 </div>
                                 
@@ -377,9 +377,16 @@ if(!isset($_SESSION['id'])) {
 
 $(document).ready(function () {     
        
-    $('.toggle-nav').click(function(){
-        $('#nav-bar').slideToggle(150);
-    });  
+    $('.linked').click(function(event){
+        event.preventDefault();      
+               
+        let pageUrl = $(this).attr("href"); // Get the target URL
+                
+        setTimeout(function(){
+        window.location.href = pageUrl; // Navigate after delay
+        }, 1000); // 2-second delay
+            
+    }); 
    
 });
      
@@ -523,6 +530,9 @@ $('.comment-toggle').click(function(e){
         alert("Delete canceled.");
     }
     });
+
+    // accesing other pages
+   
 </script>
   
 </body>
